@@ -14,13 +14,15 @@
 
 ## About TagKit
 
-TagKit makes it easy to work with tags and tagged objects in `SwiftUI`. The result can look like this or completely different: 
+TagKit makes it easy to work with tags in `Swift` and `SwiftUI`.
+
+The result can look like this or completely different: 
 
 <p align="center">
     <img src="Resources/Demo.gif" width=300 />
 </p>
 
-Tags can be customized to fit your specific needs. You can change colors, fonts, corner radius, expanded height etc. and just use the models if you want.
+Tags and tag presenting views can be customized to fit your specific needs. You can change the tag format and use any custom models. When presenting tags, you can change colors, fonts, corner radius etc. and use any views you like.
 
 
 
