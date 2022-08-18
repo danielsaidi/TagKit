@@ -59,9 +59,19 @@ public struct TagCapsule: View {
  */
 public struct TagCapsuleStyle {
 
+    /**
+     Create a new tag capsule style.
+
+     - Parameters:
+       - foregroundColor: The foreground color to use, by default `.primary`.
+       - backgroundColor: The foreground color to use, by default `.blue`.
+       - borderColor: The border color to use, by default `.clear`.
+       - borderWidth: The border width to use, by default `1`.
+       - padding: The padding to apply to the text.
+     */
     public init(
         foregroundColor: Color = .primary,
-        backgroundColor: Color = .green,
+        backgroundColor: Color = .blue,
         borderColor: Color = .clear,
         borderWidth: Double = 1,
         padding: EdgeInsets = .init(top: 5, leading: 10, bottom: 7, trailing: 10)
@@ -73,10 +83,29 @@ public struct TagCapsuleStyle {
         self.padding = padding
     }
 
+    /**
+     The foreground color to use, by default `.primary`.
+     */
     public var foregroundColor: Color
+
+    /**
+     The foreground color to use, by default `.blue`.
+     */
     public var backgroundColor: Color
+
+    /**
+     The border color to use, by default `.clear`.
+     */
     public var borderColor: Color
+
+    /**
+     The border width to use, by default `1`.
+     */
     public var borderWidth: Double
+
+    /**
+     The padding to apply to the text.
+     */
     public var padding: EdgeInsets
 }
 
