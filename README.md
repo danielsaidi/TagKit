@@ -22,7 +22,7 @@ The result can look like this or completely different:
     <img src="Resources/Demo.gif" width=300 />
 </p>
 
-Tags and tag presenting views can be customized to fit your specific needs. You can change the tag format and use any custom models. When presenting tags, you can change colors, fonts, corner radius etc. and use any views you like.
+Tags and tag views can be customized to fit your specific needs. You can change the slug format and tag any custom models, and when presenting tags you can apply custom styling and use any views you like.
 
 
 
