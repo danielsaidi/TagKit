@@ -2,7 +2,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'TagKit'
-  s.version          = '0.0.1'
+  s.version          = '0.1.0'
   s.swift_versions   = ['5.3']
   s.summary          = 'TagKit contains tools for building gag-based apps.'
 
