@@ -15,7 +15,7 @@ final class SlugifiableTests: XCTestCase {
         let string = "I'd love a super-great AppleCar!"
         let config = SlugConfiguration(
             separator: "+",
-            allowedCharacters: NSCharacterSet(charactersIn: "abc"))
+            allowedCharacters: "abc")
         let result = string.slugified(configuration: config)
         let expected = "a+a+a+ca"
 

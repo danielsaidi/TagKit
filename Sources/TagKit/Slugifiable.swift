@@ -44,7 +44,7 @@ public extension Slugifiable {
     func slugified(
         configuration: SlugConfiguration = .standard
     ) -> String {
-        let chars = configuration.allowedCharacters.inverted
+        let chars = configuration.allowedCharacterSet.inverted
         let separator = configuration.separator
         return slugifiableValue.lowercased()
             .components(separatedBy: chars)

@@ -27,10 +27,12 @@ public struct SlugConfiguration {
      */
     public init(
         separator: String = "-",
-        allowedCharacters: NSCharacterSet = NSCharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789")
+        allowedCharacters: String = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
     ) {
+        let chars = allowedCharacters + separator
         self.separator = separator
-        self.allowedCharacters = allowedCharacters
+        self.allowedCharacters = chars
+        self.allowedCharacterSet = NSCharacterSet(charactersIn: chars)
     }
 
     /**
@@ -41,7 +43,12 @@ public struct SlugConfiguration {
     /**
      The characters to allow in the slugified string.
      */
-    public let allowedCharacters: NSCharacterSet
+    public let allowedCharacters: String
+
+    /**
+     The character set to allow in the slugified string.
+     */
+    public let allowedCharacterSet: NSCharacterSet
 }
 
 public extension SlugConfiguration {

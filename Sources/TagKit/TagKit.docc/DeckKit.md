@@ -56,3 +56,7 @@ TagKit is available under the MIT license.
 - ``Slugifiable``
 - ``SlugConfiguration``
 - ``Taggable``
+
+### Views
+
+- ``TagTextField``

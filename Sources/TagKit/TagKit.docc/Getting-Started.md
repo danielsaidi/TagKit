@@ -78,6 +78,6 @@ Collections that contain ``Taggable`` types also get some additional functionali
 
 ## Views
 
-TagKit will contain a couple of views to simplify working with tags.
+TagKit also has a few views that aim at making it easier to work with tags.
 
-More information coming soon.
+For instance, ``TagTextField`` only lets you type valid characters, which is nice when you want to educate users about the expected format.
