@@ -59,4 +59,7 @@ TagKit is available under the MIT license.
 
 ### Views
 
+- ``TagEditList``
+- ``TagList``
+- ``TagListContainer``
 - ``TagTextField``

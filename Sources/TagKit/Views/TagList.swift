@@ -11,20 +11,25 @@
 import SwiftUI
 
 /**
+ This enum specifies all supported tag list container types.
+ */
+public enum TagListContainer {
+
+    case scrollView, vstack
+}
+
+/**
  This view lists tags in a leading to trailing flow.
 
  The view takes a list of tags and use the provided tag view
  builder to render a view for each tag. This gives you a lot
  of flexibility, since you can use any view you want.
 
- Tags will break to new lines whenever they don't fit on the
- current line.
-
  You must specify a container type, since the list has to be
  rendered differently depending on if it's in a `ScrollView`
  or a `VerticalStack`.
  */
-struct TagList<ItemView: View>: View {
+public struct TagList<TagView: View>: View {
 
     /**
      Create a tag list.
@@ -36,49 +41,44 @@ struct TagList<ItemView: View>: View {
 
      - Parameters:
        - tags: The items to render in the layout.
-       - configuration: The slug configuration to use, by default ``SlugConfiguration/standard``.
        - container: The container type, by default `.scrollView`.
        - horizontalSpacing: The horizontal spacing between items.
        - verticalSpacing: The vertical spacing between items.
-       - itemView: The item view builder.
+       - tagView: The item view builder.
      */
-    init(
+    public init(
         tags: [String],
-        configuration: SlugConfiguration = .standard,
-        container: ContainerType = .scrollView,
+        container: TagListContainer = .scrollView,
         horizontalSpacing: CGFloat = 5,
         verticalSpacing: CGFloat = 5,
-        @ViewBuilder itemView: @escaping (String) -> ItemView
+        @ViewBuilder tagView: @escaping TagViewBuilder
     ) {
         self.tags = tags
         self.container = container
         self.horizontalSpacing = horizontalSpacing
         self.verticalSpacing = verticalSpacing
-        self.itemView = itemView
+        self.tagView = tagView
         let initialHeight: CGFloat = container == .scrollView ? .zero : .infinity
         _totalHeight = State(initialValue: initialHeight)
     }
 
     private let tags: [String]
-    private let container: ContainerType
+    private let container: TagListContainer
     private let horizontalSpacing: CGFloat
     private let verticalSpacing: CGFloat
 
     @ViewBuilder
-    let itemView: (String) -> ItemView
+    private let tagView: TagViewBuilder
 
     /**
-     This enum specifies all supported container types.
+     This type defines the tag view builder for the list.
      */
-    public enum ContainerType {
-
-        case scrollView, vstack
-    }
+    public typealias TagViewBuilder = (_ tag: String) -> TagView
 
     @State
     private var totalHeight: CGFloat
 
-    var body: some View {
+    public var body: some View {
         if container == .scrollView {
             content.frame(height: totalHeight)
         } else {
@@ -102,7 +102,7 @@ private extension TagList {
         let itemCount = tags.count
         return ZStack(alignment: .topLeading) {
             ForEach(Array(tags.enumerated()), id: \.offset) { index, item in
-                itemView(item)
+                tagView(item)
                     .padding([.horizontal], horizontalSpacing)
                     .padding([.vertical], verticalSpacing)
                     .alignmentGuide(.leading, computeValue: { d in
@@ -152,8 +152,8 @@ struct TagList_Previews: PreviewProvider {
 
     static var previews: some View {
         ScrollView {
-            TagList(tags: tags) {
-                Text($0)
+            TagList(tags: tags) {  tag in
+                Text(tag)
                     .font(.system(size: 12))
                     .foregroundColor(.black)
                     .padding(.horizontal, 8)
