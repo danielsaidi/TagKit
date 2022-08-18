@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="fastlane.lanes">
+    
+    
+    
+      
+      <testcase classname="fastlane.lanes" name="00: Verifying fastlane version" time="0.000532">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="01: default_platform" time="9.3e-05">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="02: Switch to ios ensure_release_ready lane" time="9.9e-05">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="03: ensure_git_status_clean" time="0.014013">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="04: ensure_git_branch" time="0.009688">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="05: Switch to ios lint lane" time="9.5e-05">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="06: swiftlint" time="1.575237">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="07: Switch to ios test lane" time="0.000116">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="08: swift test" time="18.143656">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="09: Switch to ios documentation lane" time="0.000107">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="10: Switch to ios docc_web lane" time="6.0e-05">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="11: Switch to ios docc lane" time="6.2e-05">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="12: cd .. &amp;&amp; rm -rf Docs" time="0.009771">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="13: Switch to ios docc_platform lane" time="0.000205">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="14: cd .. &amp;&amp; mkdir -p Docs" time="0.006313">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="15: Switch to ios docc_delete_derived_data lane" time="0.000136">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="16: find ~/Library/Developer/Xcode/DerivedData \
+      -name &quot;SwiftUIKit.doccarchive&quot; \
+      -exec rm -Rf {} \; || true" time="1.710276">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="17: cd .. &amp;&amp; xcodebuild docbuild \
+      -scheme SwiftUIKit \
+      -destination &apos;generic/platform=iOS&apos;" time="25.113867">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="18: cd .. &amp;&amp; \
+      find ~/Library/Developer/Xcode/DerivedData \
+      -name &quot;SwiftUIKit.doccarchive&quot; \
+      -exec cp -R {} Docs \;" time="7.425539">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="19: cd .. &amp;&amp; \
+      mv Docs/SwiftUIKit.doccarchive Docs/SwiftUIKit_ios.doccarchive" time="0.018745">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="20: Switch to ios docc_platform lane" time="0.00012">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="21: cd .. &amp;&amp; mkdir -p Docs" time="0.007461">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="22: Switch to ios docc_delete_derived_data lane" time="0.000502">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="23: find ~/Library/Developer/Xcode/DerivedData \
+      -name &quot;SwiftUIKit.doccarchive&quot; \
+      -exec rm -Rf {} \; || true" time="6.137429">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="24: cd .. &amp;&amp; xcodebuild docbuild \
+      -scheme SwiftUIKit \
+      -destination &apos;generic/platform=OS X&apos;" time="25.130762">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="25: cd .. &amp;&amp; \
+      find ~/Library/Developer/Xcode/DerivedData \
+      -name &quot;SwiftUIKit.doccarchive&quot; \
+      -exec cp -R {} Docs \;" time="5.937749">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="26: cd .. &amp;&amp; \
+      mv Docs/SwiftUIKit.doccarchive Docs/SwiftUIKit_osx.doccarchive" time="0.007677">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="27: Switch to ios docc_platform lane" time="0.000105">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="28: cd .. &amp;&amp; mkdir -p Docs" time="0.006082">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="29: Switch to ios docc_delete_derived_data lane" time="0.000167">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="30: find ~/Library/Developer/Xcode/DerivedData \
+      -name &quot;SwiftUIKit.doccarchive&quot; \
+      -exec rm -Rf {} \; || true" time="5.24919">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="31: cd .. &amp;&amp; xcodebuild docbuild \
+      -scheme SwiftUIKit \
+      -destination &apos;generic/platform=tvOS&apos;" time="17.615807">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="32: cd .. &amp;&amp; \
+      find ~/Library/Developer/Xcode/DerivedData \
+      -name &quot;SwiftUIKit.doccarchive&quot; \
+      -exec cp -R {} Docs \;" time="5.556202">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="33: cd .. &amp;&amp; \
+      mv Docs/SwiftUIKit.doccarchive Docs/SwiftUIKit_tvos.doccarchive" time="0.021162">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="34: Switch to ios docc_platform lane" time="0.000141">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="35: cd .. &amp;&amp; mkdir -p Docs" time="0.017323">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="36: Switch to ios docc_delete_derived_data lane" time="0.000188">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="37: find ~/Library/Developer/Xcode/DerivedData \
+      -name &quot;SwiftUIKit.doccarchive&quot; \
+      -exec rm -Rf {} \; || true" time="3.553777">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="38: cd .. &amp;&amp; xcodebuild docbuild \
+      -scheme SwiftUIKit \
+      -destination &apos;generic/platform=watchOS&apos;" time="21.786759">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="39: cd .. &amp;&amp; \
+      find ~/Library/Developer/Xcode/DerivedData \
+      -name &quot;SwiftUIKit.doccarchive&quot; \
+      -exec cp -R {} Docs \;" time="5.044814">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="40: cd .. &amp;&amp; \
+      mv Docs/SwiftUIKit.doccarchive Docs/SwiftUIKit_watchos.doccarchive" time="0.008878">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="41: Switch to ios docc_web_platform lane" time="0.000125">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="42: cd .. &amp;&amp; $(xcrun --find docc) process-archive \
+      transform-for-static-hosting Docs/SwiftUIKit_ios.doccarchive \
+      --output-path Docs/web_ios \
+      --hosting-base-path SwiftUIKit" time="19.188203">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="43: Switch to ios docc_web_platform lane" time="0.00014">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="44: cd .. &amp;&amp; $(xcrun --find docc) process-archive \
+      transform-for-static-hosting Docs/SwiftUIKit_osx.doccarchive \
+      --output-path Docs/web_osx \
+      --hosting-base-path SwiftUIKit" time="14.442369">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="45: Switch to ios docc_web_platform lane" time="0.000138">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="46: cd .. &amp;&amp; $(xcrun --find docc) process-archive \
+      transform-for-static-hosting Docs/SwiftUIKit_tvos.doccarchive \
+      --output-path Docs/web_tvos \
+      --hosting-base-path SwiftUIKit" time="11.72137">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="47: Switch to ios docc_web_platform lane" time="0.00014">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="48: cd .. &amp;&amp; $(xcrun --find docc) process-archive \
+      transform-for-static-hosting Docs/SwiftUIKit_watchos.doccarchive \
+      --output-path Docs/web_watchos \
+      --hosting-base-path SwiftUIKit" time="10.30884">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="49: version_bump_podspec" time="0.001621">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="50: git_commit" time="0.189873">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="51: add_git_tag" time="0.015702">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="52: push_git_tags" time="1.588495">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="53: push_to_git_remote" time="1.642213">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="54: pod_push" time="74.407935">
+        
+      </testcase>
+    
+  </testsuite>
+</testsuites>
