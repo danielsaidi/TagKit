@@ -14,7 +14,7 @@
 
 ## About TagKit
 
-TagKit makes it easy to work with tags in `Swift` and `SwiftUI`.
+TagKit makes it easy to work with tags in `Swift` and `SwiftUI` on `iOS`, `macOS`, `tvOS` and `watchOS`. 
 
 The result can look like this or completely different: 
 
