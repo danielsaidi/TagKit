@@ -154,7 +154,9 @@ struct TagEditList_Previews: PreviewProvider {
                     }.padding()
                 }
                 .font(.title)
+                #if os(iOS)
                 .navigationBarTitle("TagKit")
+                #endif
             }
         }
 

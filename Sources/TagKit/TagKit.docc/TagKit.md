@@ -59,6 +59,8 @@ TagKit is available under the MIT license.
 
 ### Views
 
+- ``TagCapsule``
+- ``TagCapsuleStyle``
 - ``TagEditList``
 - ``TagList``
 - ``TagListContainer``
