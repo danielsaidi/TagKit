@@ -1,10 +1,8 @@
 //
 //  TagEditList.swift
-//  WallyKit
+//  TagKit
 //
-//  Based on https://github.com/globulus/swiftui-flow-layout
-//
-//  Created by Daniel Saidi on 2022-08-18.
+//  Created by Daniel Saidi on 2022-08-19.
 //  Copyright © 2022 Daniel Saidi. All rights reserved.
 //
 
@@ -17,6 +15,11 @@ import SwiftUI
  The view takes a list of tags and use the provided tag view
  builder to render a view for each tag. This gives you a lot
  of flexibility, since you can use any view you want.
+
+ Note that the list will not slugify the provided tags since
+ this would require it to use the same slug configuration as
+ was used to generate the tags. Just provide it with already
+ slugified tags.
 
  Note that tags that only exist in `tags` will be removed if
  they are toggled off. To make them stick around, just make
@@ -34,11 +37,6 @@ public struct TagEditList<TagView: View>: View {
      The list will list all tags in the provided tag binding,
      as well as all tags in the additional provided tag list.
      This lets you provide a set of tags to pick from.
-
-     The list will not slugify the provided tags, since this
-     would require it to use the same slug config as the tag
-     collection was created with, which can lead to bugs. Do
-     make sure to only provide this view with slugified tags.
 
      - Parameters:
        - tags: The items to render in the layout.
@@ -131,23 +129,44 @@ struct TagEditList_Previews: PreviewProvider {
     struct Preview: View {
 
         @State
+        var newTag = ""
+
+        @State
         var tags = ["foo", "bar", "baz"]
 
         var body: some View {
-            ScrollView {
-                TagEditList(
-                    tags: $tags,
-                    additionalTags: ["foo", "tag-1", "tag-2", "tag-3", "tag-4", "tag-5"]
-                ) { tag, hasTag in
-                    Text(tag)
-                        .font(.system(size: 12))
-                        .foregroundColor(.black)
-                        .padding(.horizontal, 8)
-                        .padding(.vertical, 4)
-                        .background(hasTag ? Color.green : Color.red)
-                        .clipShape(RoundedRectangle(cornerRadius: 5))
-                }.padding()
+            NavigationView {
+                ScrollView {
+                    VStack {
+                        TagTextField(
+                            text: $newTag,
+                            placeholder: "Add new tag"
+                        )
+                        .textFieldStyle(.roundedBorder)
+                        .overlay(addButton, alignment: .trailing)
+
+                        TagEditList(
+                            tags: $tags,
+                            additionalTags: ["foo", "bar", "baz", "tag-1", "tag-2", "tag-3", "tag-4", "tag-5"]
+                        ) { tag, hasTag in
+                            TagCapsule(tag: tag, style: hasTag ? .standardSelected : .standard)
+                        }
+                    }.padding()
+                }
+                .font(.title)
+                .navigationBarTitle("TagKit")
             }
+        }
+
+        private var addButton: some View {
+            Button("Add") {
+                addTag(tag: newTag)
+            }.padding(.horizontal, 10)
+        }
+
+        private func addTag(tag: String) {
+            tags.append(tag.slugified())
+            newTag = ""
         }
     }
 

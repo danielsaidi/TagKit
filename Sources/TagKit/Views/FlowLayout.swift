@@ -1,10 +1,10 @@
 //
 //  FlowLayout.swift
-//  WallyKit
+//  TagKit
 //
 //  Based on https://github.com/globulus/swiftui-flow-layout
 //
-//  Created by Daniel Saidi on 2022-08-18.
+//  Created by Daniel Saidi on 2022-08-19.
 //  Copyright © 2022 Daniel Saidi. All rights reserved.
 //
 

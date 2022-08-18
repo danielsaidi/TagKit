@@ -78,6 +78,6 @@ Collections that contain ``Taggable`` types also get some additional functionali
 
 ## Views
 
-TagKit also has a few views that aim at making it easier to work with tags. For instance, ``TagTextField`` automatically slugifies text as you type, while ``TagList`` and ``TagEditList`` are used to list and edit tags.
+TagKit also has a few views that aim at making it easier to work with tags. For instance, ``TagList`` and ``TagEditList`` let you list and edit tags with a customizable tag view, ``TagCapsule`` renders tags with a customizable style and ``TagTextField`` automatically slugifies text as you type.
 
 You can have a look at the SwiftUI previews in these files to see them in action.

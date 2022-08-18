@@ -1,6 +1,6 @@
 //
 //  TagList.swift
-//  WallyKit
+//  TagKit
 //
 //  Based on https://github.com/globulus/swiftui-flow-layout
 //
@@ -24,6 +24,11 @@ public enum TagListContainer {
  The view takes a list of tags and use the provided tag view
  builder to render a view for each tag. This gives you a lot
  of flexibility, since you can use any view you want.
+
+ Note that the list will not slugify the provided tags since
+ this would require it to use the same slug configuration as
+ was used to generate the tags. Just provide it with already
+ slugified tags.
 
  You must specify a container type, since the list has to be
  rendered differently depending on if it's in a `ScrollView`
