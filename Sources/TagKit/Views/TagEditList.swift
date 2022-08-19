@@ -98,10 +98,10 @@ public struct TagEditList<TagView: View>: View {
 private extension View {
 
     func withButtonStyle() -> some View {
-        #if os(watchOS)
-        self
-        #else
+        #if os(iOS)
         self.buttonStyle(.borderless)
+        #else
+        self
         #endif
     }
 }
