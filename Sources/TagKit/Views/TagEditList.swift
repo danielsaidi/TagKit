@@ -90,8 +90,19 @@ public struct TagEditList<TagView: View>: View {
             verticalSpacing: verticalSpacing) { tag in
                 Button(action: { toggleTag(tag) }) {
                     tagView(tag, hasTag(tag))
-                }.buttonStyle(.borderless)
+                }.withButtonStyle()
             }
+    }
+}
+
+private extension View {
+
+    func withButtonStyle() -> some View {
+        #if os(watchOS)
+        self
+        #else
+        self.buttonStyle(.borderless)
+        #endif
     }
 }
 
@@ -124,6 +135,7 @@ private extension TagEditList {
     }
 }
 
+#if os(iOS)
 struct TagEditList_Previews: PreviewProvider {
 
     struct Preview: View {
@@ -154,9 +166,7 @@ struct TagEditList_Previews: PreviewProvider {
                     }.padding()
                 }
                 .font(.title)
-                #if os(iOS)
                 .navigationBarTitle("TagKit")
-                #endif
             }
         }
 
@@ -176,3 +186,4 @@ struct TagEditList_Previews: PreviewProvider {
         Preview()
     }
 }
+#endif
