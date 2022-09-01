@@ -3,20 +3,6 @@
 This article describes how you get started with TagKit.
 
 
-## Installation
-
-TagKit can be installed with the Swift Package Manager:
-
-```
-https://github.com/danielsaidi/TagKit.git
-``` 
-
-or with CocoaPods:
-
-```
-pod TagKit
-```
-
 ## Tagging with TagKit
 
 Before we look at tagging, let's start with looking at slugifying strings, which is the process of converting a string to a slug by removing unsupported characters and replacing whitespace with a separator.

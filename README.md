@@ -14,7 +14,7 @@
 
 ## About TagKit
 
-TagKit makes it easy to work with tags in `Swift` and `SwiftUI` on `iOS`, `macOS`, `tvOS` and `watchOS`. 
+TagKit makes it easy to work with tags in `Swift` and `SwiftUI`. 
 
 The result can look like this or completely different: 
 
@@ -46,17 +46,19 @@ or with CocoaPods:
 pod TagKit
 ```
 
+You can also clone the repository and build the library locally.
+
 
 
 ## Getting started
 
-To get started with Tag, have a look at [this getting started guide][GettingStarted].
+The online documentation has a [getting-started guide][Getting-Started] that will help you get started with the library.
 
 
 
 ## Documentation
 
-The [online documentation][Documentation] contains more information, code examples etc. and makes it easy to overview the various parts of the library.
+The [online documentation][Documentation] has articles, code examples etc. that let you overview the various parts of the library.
 
 The online documentation is currently iOS-specific. To generate documentation for other platforms, open the package in Xcode, select a simulator then run `Product/Build Documentation`. 
 
@@ -96,7 +98,5 @@ TagKit is available under the MIT license. See the [LICENSE][License] file for m
 [Sponsors]: https://github.com/sponsors/danielsaidi
 
 [Documentation]: https://danielsaidi.github.io/TagKit/documentation/tagkit/
-[GettingStarted]: https://github.com/danielsaidi/TagKit/blob/master/Readmes/Getting-Started.md
+[Getting-Started]: https://danielsaidi.github.io/TagKit/documentation/tagkit/getting-started
 [License]: https://github.com/danielsaidi/TagKit/blob/master/LICENSE
-
-[Tutorial]: https://www.swiftcompiled.com/swiftui-cards/

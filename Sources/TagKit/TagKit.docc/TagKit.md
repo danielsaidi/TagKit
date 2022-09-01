@@ -1,6 +1,6 @@
 # ``TagKit``
 
-TagKit makes it easy to work with tags in `Swift` and `SwiftUI` on `iOS`, `macOS`, `tvOS` and `watchOS`.
+TagKit makes it easy to work with tags in `Swift` and `SwiftUI`.
 
 
 
@@ -31,6 +31,9 @@ or with CocoaPods:
 ```
 pod TagKit
 ```
+
+You can also clone the repository and build the library locally.
+
 
 
 ## About this documentation
