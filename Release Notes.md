@@ -1,6 +1,11 @@
 # Release notes
 
 
+## 0.1.1
+
+This version adjusts the tag capsule border to be rendered as an overlay. 
+
+
 ## 0.1
 
 This version is the first public beta release of TagKit. 
