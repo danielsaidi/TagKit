@@ -12,12 +12,6 @@ Tags and tag views can be customized to fit your specific needs. You can change 
 
 
 
-## Supported Platforms
-
-TagKit supports `iOS 13`, `macOS 11`, `tvOS 13` and `watchOS 6`.
-
-
-
 ## Installation
 
 TagKit can be installed with the Swift Package Manager:
@@ -32,7 +26,13 @@ or with CocoaPods:
 pod TagKit
 ```
 
-You can also clone the repository and build the library locally.
+If you prefer to not have external dependencies, you can also just copy the source code into your app.
+
+
+
+## Supported Platforms
+
+TagKit supports `iOS 13`, `macOS 11`, `tvOS 13` and `watchOS 6`.
 
 
 

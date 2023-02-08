@@ -40,7 +40,7 @@ or with CocoaPods:
 pod TagKit
 ```
 
-If you prefer not having external dependencies, you can also just copy the source code into your app.
+If you prefer to not have external dependencies, you can also just copy the source code into your app.
 
 
 
