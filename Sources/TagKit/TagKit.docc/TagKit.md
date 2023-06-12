@@ -1,6 +1,6 @@
 # ``TagKit``
 
-TagKit makes it easy to work with tags in `Swift` and `SwiftUI`.
+TagKit makes it easy to work with tags and slugification in `Swift` and `SwiftUI`.
 
 
 
@@ -8,7 +8,9 @@ TagKit makes it easy to work with tags in `Swift` and `SwiftUI`.
 
 ![TagKit logo](Logo.png)
 
-Tags and tag views can be customized to fit your specific needs. You can change the slug format and tag any custom models, and when presenting tags you can apply custom styling and use any views you like.
+Tags and views can be customized to fit your specific needs. You can change the slug format and tag any custom models, and when presenting tags you can apply custom styling and use any views you like.
+
+TagKit supports `iOS 13`, `macOS 11`, `tvOS 13` and `watchOS 6`.
 
 
 
@@ -20,25 +22,25 @@ TagKit can be installed with the Swift Package Manager:
 https://github.com/danielsaidi/TagKit.git
 ```
 
-or with CocoaPods:
-
-```
-pod TagKit
-```
-
 If you prefer to not have external dependencies, you can also just copy the source code into your app.
 
 
 
-## Supported Platforms
+## Getting started
 
-TagKit supports `iOS 13`, `macOS 11`, `tvOS 13` and `watchOS 6`.
+The <doc:Getting-Started> article has a guide to help you get started with TagKit.
+
+
+
+## Repository
+
+For more information, source code, and to report issues, sponsor the project etc., visit the [project repository](https://github.com/danielsaidi/TagKit).
 
 
 
 ## About this documentation
 
-The online documentation is currently iOS-specific. To generate documentation for other platforms, open the package in Xcode, select a simulator then run `Product/Build Documentation`.
+The online documentation is currently iOS only. To generate documentation for other platforms, open the package in Xcode, select a simulator then run `Product/Build Documentation`.
 
 
 

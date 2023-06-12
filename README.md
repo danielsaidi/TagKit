@@ -7,8 +7,12 @@
     <img src="https://img.shields.io/badge/Swift-5.6-orange.svg" alt="Swift 5.6" />
     <img src="https://img.shields.io/badge/platform-SwiftUI-blue.svg" alt="Swift UI" title="Swift UI" />
     <img src="https://img.shields.io/github/license/danielsaidi/TagKit" alt="MIT License" />
-    <img src="https://img.shields.io/twitter/url?label=Twitter&style=social&url=https%3A%2F%2Ftwitter.com%2Fdanielsaidi" alt="Twitter: @danielsaidi" title="Twitter: @danielsaidi" />
-    <img src="https://img.shields.io/mastodon/follow/000253346?label=mastodon&style=social" alt="Mastodon: @danielsaidi@mastodon.social" title="Mastodon: @danielsaidi@mastodon.social" />
+        <a href="https://twitter.com/danielsaidi">
+        <img src="https://img.shields.io/twitter/url?label=Twitter&style=social&url=https%3A%2F%2Ftwitter.com%2Fdanielsaidi" alt="Twitter: @danielsaidi" title="Twitter: @danielsaidi" />
+    </a>
+    <a href="https://mastodon.social/@danielsaidi">
+        <img src="https://img.shields.io/mastodon/follow/000253346?label=mastodon&style=social" alt="Mastodon: @danielsaidi@mastodon.social" title="Mastodon: @danielsaidi@mastodon.social" />
+    </a>
 </p>
 
 
@@ -24,6 +28,8 @@ The result can look like this or completely different:
 
 Tags and views can be customized to fit your specific needs. You can change the slug format and tag any custom models, and when presenting tags you can apply custom styling and use any views you like.
 
+TagKit supports `iOS 13`, `macOS 11`, `tvOS 13` and `watchOS 6`.
+
 
 
 ## Installation
@@ -34,19 +40,7 @@ TagKit can be installed with the Swift Package Manager:
 https://github.com/danielsaidi/TagKit.git
 ```
 
-or with CocoaPods:
-
-```
-pod TagKit
-```
-
 If you prefer to not have external dependencies, you can also just copy the source code into your app.
-
-
-
-## Supported Platforms
-
-TagKit supports `iOS 13`, `macOS 11`, `tvOS 13` and `watchOS 6`.
 
 
 
@@ -58,7 +52,9 @@ In TagKit, you can use the `Slugifiable` protocol to describe slufiable types. `
 
 With slugified strings in place, we can then use the `Taggable` protocol to describe taggable types. Once a type implements `Taggable`, it can make use of all the functionality that the protocol provides, such as adding or removing tags, check if a tag has been added etc.
 
-Finally, TagKit has a couple of views to list and edit tags. For more information, please see the [online documentation][Documentation] and [getting started guide][Getting-Started].
+Finally, TagKit has a couple of views to list and edit tags. 
+
+For more information, please see the [online documentation][Documentation] and [getting started guide][Getting-Started].
 
 
 
@@ -74,9 +70,11 @@ I will create a demo application for this package once it gets 100+ stars.
 
 
 
-## Support
+## Support this library
 
-You can sponsor this project on [GitHub Sponsors][Sponsors] or get in touch for paid support. 
+I manage my various open-source projects in my free time and am really thankful for any help I can get from the community. 
+
+You can sponsor this project on [GitHub Sponsors][Sponsors] or get in touch for paid support.
 
 
 
