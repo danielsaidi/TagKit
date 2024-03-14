@@ -27,9 +27,9 @@ The result can look like this or completely different:
     <img src="Resources/Demo-v2.gif" width=450 />
 </p>
 
-Tags and views can be customized to fit your specific needs. You can change the slug format and tag any custom models. When presenting tags, you can apply custom styling and use any views you like.
+Tags and views can be customized to fit your needs. You can slug and tag any model and customize the slug format. When presenting tags, you can apply custom styling and use any views you like.
 
-TagKit also has a views that make it easier to work with tags. For instance, ``TagList`` and ``TagEditList`` let you list and edit tags, ``TagCapsule`` renders tags with a customizable style and ``TagTextField`` automatically slugifies text as you type.
+TagKit also has a views that make it easier to work with tags. For instance, ``TagList`` and ``TagEditList`` let you list and edit tags, ``TagCapsule`` renders styled tags and ``TagTextField`` automatically slugifies text as you type.
 
 
 
