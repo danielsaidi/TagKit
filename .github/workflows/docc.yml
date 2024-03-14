@@ -39,14 +39,14 @@ jobs:
         run: |
           swift package resolve;
           
-          xcodebuild docbuild -scheme ApiKit -derivedDataPath /tmp/docbuild -destination 'generic/platform=iOS';
+          xcodebuild docbuild -scheme WebViewKit -derivedDataPath /tmp/docbuild -destination 'generic/platform=iOS';
           
           $(xcrun --find docc) process-archive \
-            transform-for-static-hosting /tmp/docbuild/Build/Products/Debug-iphoneos/ApiKit.doccarchive \
+            transform-for-static-hosting /tmp/docbuild/Build/Products/Debug-iphoneos/WebViewKit.doccarchive \
             --output-path docs \
-            --hosting-base-path 'ApiKit';
+            --hosting-base-path 'WebViewKit';
             
-          echo "<script>window.location.href += \"/documentation/apikit\"</script>" > docs/index.html;
+          echo "<script>window.location.href += \"/documentation/tagkit\"</script>" > docs/index.html;
           
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

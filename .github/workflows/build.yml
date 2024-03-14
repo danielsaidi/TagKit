@@ -10,7 +10,7 @@ on:
     branches: ["main"]
     
 env:
-  SCHEME: ApiKit
+  SCHEME: TagKit
 
 jobs:
   build:
