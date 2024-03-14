@@ -24,7 +24,7 @@ TagKit is a Swift SDK that makes it easy to work with tags and slugification in 
 The result can look like this or completely different: 
 
 <p align="center">
-    <img src="Resources/Demo.gif" width=300 />
+    <img src="Resources/Demo-v2.gif" width=450 />
 </p>
 
 Tags and views can be customized to fit your specific needs. You can change the slug format and tag any custom models. When presenting tags, you can apply custom styling and use any views you like.
