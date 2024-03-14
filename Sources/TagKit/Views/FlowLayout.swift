@@ -143,7 +143,7 @@ private extension FlowLayout {
             .font(.footnote)
             .padding(.vertical, 5)
             .padding(.horizontal, 10)
-            .background(.regularMaterial, in: .rect(cornerRadius: 8))
+            .background(.red, in: .rect(cornerRadius: 8))
     }
     .padding()
 }
