@@ -5,7 +5,7 @@
 //  Based on https://github.com/globulus/swiftui-flow-layout
 //
 //  Created by Daniel Saidi on 2022-08-19.
-//  Copyright © 2022 Daniel Saidi. All rights reserved.
+//  Copyright © 2022-2024 Daniel Saidi. All rights reserved.
 //
 
 import SwiftUI
@@ -23,19 +23,17 @@ import SwiftUI
  The view is internal and kept for reference, if we will use
  it on other ways in the future.
  */
-struct FlowLayout<ItemType, ItemView: View>: View {
+public struct FlowLayout<ItemType, ItemView: View>: View {
 
-    /**
-     Create a flow layout.
-
-     - Parameters:
-       - container: The container type.
-       - items: The items to render in the layout.
-       - horizontalSpacing: The horizontal spacing between items.
-       - verticalSpacing: The vertical spacing between items.
-       - itemView: The item view builder.
-     */
-    init(
+    /// Create a flow layout.
+    ///
+    /// - Parameters:
+    ///   - container: The container type.
+    ///   - items: The items to render in the layout.
+    ///   - horizontalSpacing: The horizontal spacing between items.
+    ///   - verticalSpacing: The vertical spacing between items.
+    ///   - itemView: The item view builder.
+    public init(
         container: ContainerType,
         items: [ItemType],
         horizontalSpacing: CGFloat = 5,
@@ -57,11 +55,9 @@ struct FlowLayout<ItemType, ItemView: View>: View {
     private let verticalSpacing: CGFloat
 
     @ViewBuilder
-    let itemView: (ItemType) -> ItemView
+    private let itemView: (ItemType) -> ItemView
 
-    /**
-     This enum specifies all supported container types.
-     */
+    /// This enum specifies all supported container types.
     public enum ContainerType {
 
         case scrollView, vstack
@@ -70,7 +66,7 @@ struct FlowLayout<ItemType, ItemView: View>: View {
     @State
     private var totalHeight: CGFloat
 
-    var body: some View {
+    public var body: some View {
         if container == .scrollView {
             content.frame(height: totalHeight)
         } else {
@@ -133,24 +129,21 @@ private extension FlowLayout {
     }
 }
 
-struct FlowLayout_Previews: PreviewProvider {
+#Preview {
 
-    static var previews: some View {
-        FlowLayout(
-            container: .scrollView,
-            items: ["A long text here", "Another long text here",
-                    "A", "bunch", "of", "short", "texts", "in", "a", "row",
-                    "And then a very very very long long long long long long long long longlong long long long long long longlong long long long long long longlong long long long long long longlong long long long long long longlong long long long long long long long one",
-                    "and", "then", "some", "more", "short", "ones"
-                   ]
-        ) {
-            Text($0)
-                .font(.system(size: 12))
-                .foregroundColor(.black)
-                .padding()
-                .background(RoundedRectangle(cornerRadius: 4)
-                    .border(Color.gray)
-                    .foregroundColor(Color.gray))
-        }.padding()
+    FlowLayout(
+        container: .scrollView,
+        items: ["A long text here", "Another long text here",
+                "A", "bunch", "of", "short", "texts", "in", "a", "row",
+                "And then a very very very long long long long long long long long longlong long long long long long longlong long long long long long longlong long long long long long longlong long long long long long longlong long long long long long long long one",
+                "and", "then", "some", "more", "short", "ones"
+               ]
+    ) {
+        Text($0)
+            .font(.footnote)
+            .padding(.vertical, 5)
+            .padding(.horizontal, 10)
+            .background(.regularMaterial, in: .rect(cornerRadius: 8))
     }
+    .padding()
 }

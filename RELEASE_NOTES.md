@@ -1,9 +1,28 @@
 # Release notes
 
+TagKit will use semver after 1.0.
+
+
+## 0.2
+
+This version bumps the package to Swift 5.9 and adds support for visionOS.
+
+This version also bumps the deployment targets to make it possible to add more features. 
+
+### ✨ Features
+
+* `FlowLayout` is now public.
+
+### 💡 Behavior Changes
+
+* `TagCapsule` now applies a `TagCapsuleStyle`.
+
+
 
 ## 0.1.1
 
 This version adjusts the tag capsule border to be rendered as an overlay. 
+
 
 
 ## 0.1

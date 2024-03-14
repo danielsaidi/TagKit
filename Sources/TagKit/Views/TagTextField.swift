@@ -17,14 +17,12 @@ import SwiftUI
  */
 public struct TagTextField: View {
 
-    /**
-     Create a new tag text field.
-
-     - Parameters:
-       - text: The text binding.
-       - placeholder: The text field placeholder, by default empty.
-       - configuration: The slug configuration to use, by default ``SlugConfiguration/standard``.
-     */
+    /// Create a new tag text field.
+    ///
+    /// - Parameters:
+    ///   - text: The text binding.
+    ///   - placeholder: The text field placeholder, by default empty.
+    ///   - configuration: The slug configuration to use, by default ``SlugConfiguration/standard``.
     public init(
         text: Binding<String>,
         placeholder: String = "",
@@ -44,7 +42,7 @@ public struct TagTextField: View {
     
     public var body: some View {
         TextField(placeholder, text: text)
-            .lowercased()
+            .textCase(.lowercase)
             .withoutCapitalization()
     }
 }
@@ -59,34 +57,22 @@ private extension View {
         self
         #endif
     }
-    
-    @ViewBuilder
-    func lowercased() -> some View {
-        if #available(iOS 14.0, tvOS 14.0, watchOS 7.0, macOS 11.0, *) {
-            self.textCase(.lowercase)
-        } else {
-            self
-        }
-    }
 }
 
-struct TagTextField_Previews: PreviewProvider {
+#Preview {
     
     struct Preview: View {
     
         @State var text = ""
         
         var body: some View {
-            VStack {
-                Text(text)
-                TagTextField(text: $text, placeholder: "Enter tag")
-                    .padding()
-                    .background(Color.primary.opacity(0.1))
-            }.padding()
+            TagTextField(text: $text, placeholder: "Enter tag")
+                #if os(iOS)
+                .textFieldStyle(.roundedBorder)
+                #endif
+                .padding()
         }
     }
     
-    static var previews: some View {
-        Preview()
-    }
+    return Preview()
 }

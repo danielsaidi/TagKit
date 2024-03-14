@@ -5,14 +5,12 @@
 //  Based on https://github.com/globulus/swiftui-flow-layout
 //
 //  Created by Daniel Saidi on 2022-08-18.
-//  Copyright © 2022 Daniel Saidi. All rights reserved.
+//  Copyright © 2022-2024 Daniel Saidi. All rights reserved.
 //
 
 import SwiftUI
 
-/**
- This enum specifies all supported tag list container types.
- */
+/// This enum specifies supported tag list container types.
 public enum TagListContainer {
 
     case scrollView, vstack
@@ -36,21 +34,14 @@ public enum TagListContainer {
  */
 public struct TagList<TagView: View>: View {
 
-    /**
-     Create a tag list.
-
-     The list will not slugify the provided tags, since this
-     would require it to use the same slug config as the tag
-     collection was created with, which can lead to bugs. Do
-     make sure to only provide this view with slugified tags.
-
-     - Parameters:
-       - tags: The items to render in the layout.
-       - container: The container type, by default `.scrollView`.
-       - horizontalSpacing: The horizontal spacing between items.
-       - verticalSpacing: The vertical spacing between items.
-       - tagView: The item view builder.
-     */
+    /// Create a tag list.
+    ///
+    /// - Parameters:
+    ///   - tags: The items to render in the layout.
+    ///   - container: The container type, by default `.scrollView`.
+    ///   - horizontalSpacing: The horizontal spacing between items.
+    ///   - verticalSpacing: The vertical spacing between items.
+    ///   - tagView: The item view builder.
     public init(
         tags: [String],
         container: TagListContainer = .scrollView,
@@ -75,9 +66,7 @@ public struct TagList<TagView: View>: View {
     @ViewBuilder
     private let tagView: TagViewBuilder
 
-    /**
-     This type defines the tag view builder for the list.
-     */
+    /// This type defines the tag view builder for the list.
     public typealias TagViewBuilder = (_ tag: String) -> TagView
 
     @State
@@ -146,26 +135,25 @@ private extension TagList {
     }
 }
 
-struct TagList_Previews: PreviewProvider {
+#Preview {
 
-    static var tags = [
+    let tags = [
         "A long text here", "Another long text here",
         "A", "bunch", "of", "short", "texts", "in", "a", "row",
         "And then a very very very long long long long long long long long longlong long long long long long longlong long long long long long longlong long long long long long longlong long long long long long longlong long long long long long long long one",
         "and", "then", "some", "more", "short", "ones"
     ]
 
-    static var previews: some View {
-        ScrollView {
-            TagList(tags: tags) {  tag in
-                Text(tag)
-                    .font(.system(size: 12))
-                    .foregroundColor(.black)
-                    .padding(.horizontal, 8)
-                    .padding(.vertical, 4)
-                    .background(Color.green)
-                    .clipShape(RoundedRectangle(cornerRadius: 5))
-            }.padding()
+    return ScrollView {
+        TagList(tags: tags) {  tag in
+            Text(tag)
+                .font(.system(size: 12))
+                .foregroundColor(.black)
+                .padding(.horizontal, 8)
+                .padding(.vertical, 4)
+                .background(Color.green)
+                .clipShape(RoundedRectangle(cornerRadius: 5))
         }
+        .padding()
     }
 }

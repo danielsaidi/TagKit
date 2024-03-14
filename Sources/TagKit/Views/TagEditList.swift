@@ -3,7 +3,7 @@
 //  TagKit
 //
 //  Created by Daniel Saidi on 2022-08-19.
-//  Copyright © 2022 Daniel Saidi. All rights reserved.
+//  Copyright © 2022-2024 Daniel Saidi. All rights reserved.
 //
 
 import SwiftUI
@@ -12,40 +12,30 @@ import SwiftUI
  This view lists tags in a leading to trailing flow and lets
  you tap tags to add and remove them from a provided binding.
 
- The view takes a list of tags and use the provided tag view
- builder to render a view for each tag. This gives you a lot
- of flexibility, since you can use any view you want.
+ The view takes a list of tags and use a tag view builder to
+ render a view for each tag. You can use any custom tag view,
+ for instance a ``TagCapsule``.
+ 
+ The view can take a list of additional tags. Tho avoid that
+ tags disappear from the list when you toggle them off. Make
+ sure to use the `additionalTags` parameter to specify which
+ tags you always want to show in the list.
 
- Note that the list will not slugify the provided tags since
- this would require it to use the same slug configuration as
- was used to generate the tags. Just provide it with already
- slugified tags.
-
- Note that tags that only exist in `tags` will be removed if
- they are toggled off. To make them stick around, just make
- sure to add them to `additionalTags` as well.
-
- You must specify a container type, since the list has to be
- rendered differently depending on if it's in a `ScrollView`
- or a `VerticalStack`.
+ You must specify a `container`, since this list is rendered
+ differently depending on if it's added to a `ScrollView` or
+ a `VerticalStack`.
  */
 public struct TagEditList<TagView: View>: View {
 
-    /**
-     Create a tag edit list.
-
-     The list will list all tags in the provided tag binding,
-     as well as all tags in the additional provided tag list.
-     This lets you provide a set of tags to pick from.
-
-     - Parameters:
-       - tags: The items to render in the layout.
-       - additionalTags: Additional tags to pick from.
-       - container: The container type, by default `.scrollView`.
-       - horizontalSpacing: The horizontal spacing between items.
-       - verticalSpacing: The vertical spacing between items.
-       - tagView: The tag view builder.
-     */
+    /// Create a tag edit list.
+    ///
+    /// - Parameters:
+    ///   - tags: The items to render in the layout.
+    ///   - additionalTags: Additional tags to pick from.
+    ///   - container: The container type, by default `.scrollView`.
+    ///   - horizontalSpacing: The horizontal spacing between items.
+    ///   - verticalSpacing: The vertical spacing between items.
+    ///   - tagView: The tag view builder.
     public init(
         tags: Binding<[String]>,
         additionalTags: [String],
@@ -73,11 +63,8 @@ public struct TagEditList<TagView: View>: View {
     @ViewBuilder
     private let tagView: TagViewBuilder
 
-    /**
-     This type defines the tag view builder for the list.
-     */
+    /// This type defines the tag view builder for the list.
     public typealias TagViewBuilder = (_ tag: String, _ hasTag: Bool) -> TagView
-
 
     @State
     private var totalHeight: CGFloat
@@ -87,22 +74,20 @@ public struct TagEditList<TagView: View>: View {
             tags: allTags,
             container: container,
             horizontalSpacing: horizontalSpacing,
-            verticalSpacing: verticalSpacing) { tag in
-                Button(action: { toggleTag(tag) }) {
-                    tagView(tag, hasTag(tag))
-                }.withButtonStyle()
+            verticalSpacing: verticalSpacing
+        ) { tag in
+            Button(action: { toggleTag(tag) }) {
+                tagView(tag, hasTag(tag))
             }
+            .withButtonStyle()
+        }
     }
 }
 
 private extension View {
 
     func withButtonStyle() -> some View {
-        #if os(iOS)
-        self.buttonStyle(.borderless)
-        #else
-        self
-        #endif
+        self.buttonStyle(.plain)
     }
 }
 
@@ -135,8 +120,7 @@ private extension TagEditList {
     }
 }
 
-#if os(iOS)
-struct TagEditList_Previews: PreviewProvider {
+#Preview {
 
     struct Preview: View {
 
@@ -146,6 +130,9 @@ struct TagEditList_Previews: PreviewProvider {
         @State
         var tags = ["foo", "bar", "baz"]
 
+        @State
+        var added: [String] = []
+
         var body: some View {
             NavigationView {
                 ScrollView {
@@ -154,36 +141,39 @@ struct TagEditList_Previews: PreviewProvider {
                             text: $newTag,
                             placeholder: "Add new tag"
                         )
+                        #if os(iOS)
                         .textFieldStyle(.roundedBorder)
+                        #endif
                         .overlay(addButton, alignment: .trailing)
 
                         TagEditList(
                             tags: $tags,
-                            additionalTags: ["foo", "bar", "baz", "tag-1", "tag-2", "tag-3", "tag-4", "tag-5"]
+                            additionalTags: ["foo", "bar", "baz", "tag-1", "tag-2", "tag-3", "tag-4", "tag-5"] + added
                         ) { tag, hasTag in
-                            TagCapsule(tag: tag, style: hasTag ? .standardSelected : .standard)
+                            TagCapsule(tag)
+                                .tagCapsuleStyle(hasTag ? .standardSelected : .standard)
                         }
-                    }.padding()
+                    }
+                    .padding()
                 }
-                .font(.title)
-                .navigationBarTitle("TagKit")
+                .navigationTitle("TagKit")
             }
         }
 
         private var addButton: some View {
             Button("Add") {
                 addTag(tag: newTag)
-            }.padding(.horizontal, 10)
+            }
+            .padding(.horizontal, 10)
         }
 
         private func addTag(tag: String) {
-            tags.append(tag.slugified())
+            let slug = tag.slugified()
+            tags.append(slug)
+            added.append(slug)
             newTag = ""
         }
     }
 
-    static var previews: some View {
-        Preview()
-    }
+    return Preview()
 }
-#endif

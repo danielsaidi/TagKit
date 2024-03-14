@@ -1,6 +1,18 @@
 #  Getting Started
 
-This article describes how you get started with TagKit.
+This article describes how to get started with TagKit.
+
+@Metadata {
+
+    @PageImage(
+        purpose: card,
+        source: "Page",
+        alt: "Page icon"
+    )
+
+    @PageColor(blue)
+}
+
 
 
 ## Tagging with TagKit
@@ -21,32 +33,48 @@ public protocol Slugifiable {
 }
 ```
 
-`String` implements this protocol by default, by returning itself as the slugifiable value.
+`String` implements this protocol by returning itself as the slugifiable value. It's also easy to make any type conform to the protocol:
 
-Once a type implements ``Slugifiable``, it can be slugified with the `slugified()` function:
+```swift
+struct Person: Slugifiable {
+
+    let firstName: String
+    let lastName: String
+    let age: Int
+
+    var slugifiableValue: String { 
+        "\(firstName) \(lastName)" 
+    }
+}
+```
+
+Any type that implements ``Slugifiable`` can be slugified with ``Slugifiable/slugified(configuration:)``:
 
 ```swift
 let string = "Hello, world!"
-let slug = string.slugified() // Returns "hello-world"
+let person = Person(firstName: "John", lastName: "Doe", age: -1)
+
+string.slugified() // -> "hello-world"
+person.slugified() // -> "john-doe"
 ```
 
-You can also provide a custom ``SlugConfiguration`` to customize the slugified result:
+You can provide a custom ``SlugConfiguration`` to customize the slugified result:
 
 ```swift
 let string = "Hello, world!"
 let config = SlugConfiguration(
     separator: "+",
-    allowedCharacters: NSCharacterSet(charactersIn: "hewo")
+    allowedCharacters: .init(charactersIn: "hewo")
 )
-let slug = string.slugified() // Returns "he+wo"
+string.slugified(configuration: config) // -> "he+wo"
 ```
 
-You probably won't need to use these functions directly, nor customize the configuration, but if you have to, you can.
+You probably won't need to use these functions and custom configurations, but if you have to, you have great flexibility to do so.
 
 
 ### Taggable types
 
-With slugified strings in place, we can start looking at tagging, which is the process of adding tags (or labels) to items, which can be used to group, filter etc.
+Tagging (or labeling) is the process of adding tags to items, with the intent to be able to categorize, group, filter and search these items.
 
 In TagKit, the ``Taggable`` protocol describes a taggable type:
 
@@ -57,13 +85,13 @@ public protocol Taggable {
 }
 ```
 
-Once a type implements ``Taggable``, it can make use of all the functionality that the protocol provides, such as `hasTags`, `slugifiedTags`, `hasTag(...)`, `addTag(...)`, `removeTag(...)`, `toggleTag(...)` etc. 
+Once a type implements ``Taggable``, it can make use of a lot of automatically implemented functionality that the protocol provides, like ``Taggable/hasTags``, ``Taggable/slugifiedTags``, ``Taggable/addTag(_:)``, ``Taggable/removeTag(_:)``, ``Taggable/toggleTag(_:)``, and much more. 
 
-Collections that contain ``Taggable`` types also get some additional functionality as well.
+Collections of ``Taggable`` types also get additional functionality as well.
 
 
 ## Views
 
-TagKit also has a few views that aim at making it easier to work with tags. For instance, ``TagList`` and ``TagEditList`` let you list and edit tags with a customizable tag view, ``TagCapsule`` renders tags with a customizable style and ``TagTextField`` automatically slugifies text as you type.
+TagKit also has a few views that aim at making it easier to work with tags. 
 
-You can have a look at the SwiftUI previews in these files to see them in action.
+For instance, ``TagList`` and ``TagEditList`` let you list and edit tags, ``TagCapsule`` renders tags with a customizable style and ``TagTextField`` automatically slugifies text as you type.
