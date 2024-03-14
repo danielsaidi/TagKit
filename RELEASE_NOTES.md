@@ -10,7 +10,7 @@ This version bumps the package to Swift 5.9 and adds support for visionOS.
 This version also bumps the deployment targets to make it possible to add more features. 
 
 ### ✨ Features
-
+swfi
 * `FlowLayout` is now public.
 * `TagCapsuleStyle` now supports specifying a background material as well.
 
