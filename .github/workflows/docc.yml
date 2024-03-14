@@ -39,12 +39,12 @@ jobs:
         run: |
           swift package resolve;
           
-          xcodebuild docbuild -scheme WebViewKit -derivedDataPath /tmp/docbuild -destination 'generic/platform=iOS';
+          xcodebuild docbuild -scheme TagKit -derivedDataPath /tmp/docbuild -destination 'generic/platform=iOS';
           
           $(xcrun --find docc) process-archive \
-            transform-for-static-hosting /tmp/docbuild/Build/Products/Debug-iphoneos/WebViewKit.doccarchive \
+            transform-for-static-hosting /tmp/docbuild/Build/Products/Debug-iphoneos/TagKit.doccarchive \
             --output-path docs \
-            --hosting-base-path 'WebViewKit';
+            --hosting-base-path 'TagKit';
             
           echo "<script>window.location.href += \"/documentation/tagkit\"</script>" > docs/index.html;
           
