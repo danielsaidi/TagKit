@@ -12,6 +12,7 @@ This version also bumps the deployment targets to make it possible to add more f
 ### ✨ Features
 
 * `FlowLayout` is now public.
+* `TagCapsuleStyle` now supports specifying a background material as well.
 
 ### 💡 Behavior Changes
 

@@ -24,15 +24,17 @@ public struct TagCapsuleStyle {
      Create a new tag capsule style.
 
      - Parameters:
-       - foregroundColor: The foreground color to use, by default `.primary`.
-       - backgroundColor: The foreground color to use, by default `.blue`.
+       - foregroundColor: The foreground color to use, by default `.black`.
+       - backgroundColor: The background color to use, by default `.gray`.
+       - backgroundMaterial: The background material to use, by default `.blue`.
        - borderColor: The border color to use, by default `.clear`.
        - borderWidth: The border width to use, by default `1`.
        - padding: The intrinsic padding to apply, by default a small padding.
      */
     public init(
-        foregroundColor: Color = .primary,
-        backgroundColor: Color = .blue,
+        foregroundColor: Color = .black,
+        backgroundColor: Color = .gray,
+        backgroundMaterial: Material? = nil,
         borderColor: Color = .clear,
         borderWidth: Double = 1,
         padding: EdgeInsets? = nil
@@ -46,6 +48,7 @@ public struct TagCapsuleStyle {
         
         self.foregroundColor = foregroundColor
         self.backgroundColor = backgroundColor
+        self.backgroundMaterial = backgroundMaterial
         self.borderColor = borderColor
         self.borderWidth = borderWidth
         self.padding = padding ?? defaultPadding
@@ -54,8 +57,11 @@ public struct TagCapsuleStyle {
     /// The foreground color to use.
     public var foregroundColor: Color
 
-    /// The foreground color to use.
+    /// The background color to use.
     public var backgroundColor: Color
+    
+    /// The background material to use.
+    public var backgroundMaterial: Material?
 
     /// The border color to use.
     public var borderColor: Color
@@ -69,16 +75,12 @@ public struct TagCapsuleStyle {
 
 public extension TagCapsuleStyle {
 
-    /// A standard tag capsule style.
+    /// The standard tag capsule style.
     ///
     /// You can set this style to change the global default.
-    static var standard = TagCapsuleStyle(
-        foregroundColor: .black,
-        backgroundColor: .gray,
-        borderColor: .clear
-    )
+    static var standard = TagCapsuleStyle()
 
-    /// A standard, selected tag capsule style.
+    /// The standard, selected tag capsule style.
     ///
     /// You can set this style to change the global default.
     static var standardSelected = TagCapsuleStyle(
@@ -124,5 +126,13 @@ public extension EnvironmentValues {
             .font(.body.bold())
             .tagCapsuleStyle(.standardSelected)
             .shadow(radius: 0, x: 0, y: 2)
+        TagCapsule("custom")
+            .tagCapsuleStyle(.init(
+                backgroundColor: .clear,
+                backgroundMaterial: .thick
+            ))
+    }
+    .background {
+        LinearGradient(colors: [.blue, .red], startPoint: .top, endPoint: .bottom)
     }
 }

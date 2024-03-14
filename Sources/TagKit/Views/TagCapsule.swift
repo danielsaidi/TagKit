@@ -41,8 +41,23 @@ public struct TagCapsule: View {
                     lineWidth: style.borderWidth
                 )
             )
+            .materialCapsuleBackground(with: style.backgroundMaterial)
             .background(Capsule().fill(style.backgroundColor))
             
+    }
+}
+
+private extension View {
+    
+    @ViewBuilder
+    func materialCapsuleBackground(
+        with material: Material?
+    ) -> some View {
+        if let material {
+            self.background(Capsule().fill(material))
+        } else {
+            self
+        }
     }
 }
 
