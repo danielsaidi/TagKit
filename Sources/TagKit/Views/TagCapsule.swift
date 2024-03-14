@@ -35,14 +35,17 @@ public struct TagCapsule: View {
         Text(tag)
             .padding(style.padding)
             .foregroundColor(style.foregroundColor)
+            
+            .materialCapsuleBackground(with: style.backgroundMaterial)
+            .background(Capsule().fill(style.backgroundColor))
+            .padding(style.borderWidth)
             .background(Capsule()
                 .strokeBorder(
                     style.borderColor,
                     lineWidth: style.borderWidth
                 )
             )
-            .materialCapsuleBackground(with: style.backgroundMaterial)
-            .background(Capsule().fill(style.backgroundColor))
+            .compositingGroup()
             
     }
 }
@@ -62,25 +65,37 @@ private extension View {
 }
 
 #Preview {
-
-    VStack {
-        TagCapsule("standard-tag")
-        TagCapsule("standard-selected-tag")
-            .font(.body.bold())
-            .tagCapsuleStyle(.standardSelected)
-        TagCapsule("spider-man")
-            .tagCapsuleStyle(.init(
-                foregroundColor: .black,
-                backgroundColor: .red,
-                borderColor: .blue,
-                borderWidth: 4,
-                padding: .init(
-                    top: 10,
-                    leading: 20,
-                    bottom: 12,
-                    trailing: 20
-                )
-            ))
+    
+    ZStack {
+        LinearGradient(colors: [.blue, .red], startPoint: .top, endPoint: .bottom)
+            .ignoresSafeArea()
+        
+        VStack {
+            HStack {
+                TagCapsule("standard-tag")
+                TagCapsule("standard-selected-tag")
+                    .font(.body.bold())
+                    .tagCapsuleStyle(.standardSelected)
+            }
+            TagCapsule("spider-man")
+                .tagCapsuleStyle(.init(
+                    foregroundColor: .black,
+                    backgroundColor: .red,
+                    borderColor: .blue,
+                    borderWidth: 4,
+                    padding: .init(
+                        top: 10,
+                        leading: 20,
+                        bottom: 12,
+                        trailing: 20
+                    )
+                ))
+                .shadow(radius: 0, y: 2)
+            TagCapsule("material")
+                .tagCapsuleStyle(.init(
+                    backgroundColor: .clear,
+                    backgroundMaterial: .thick
+                ))
+        }
     }
-    .preferredColorScheme(.dark)
 }

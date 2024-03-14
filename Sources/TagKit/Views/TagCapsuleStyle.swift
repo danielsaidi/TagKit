@@ -15,8 +15,9 @@ import SwiftUI
  styles, use native view modifiers.
 
  TagKit comes with a boring ``TagCapsuleStyle/standard`` and
- an even worse``TagCapsuleStyle/standardSelected`` style. Do
- design your own styles to make your tags pop!
+ an even worse``TagCapsuleStyle/standardSelected`` style, as
+ well as a material-based ``TagCapsuleStyle/standardMaterial``
+ and ``TagCapsuleStyle/standardMaterialSelected``.
  */
 public struct TagCapsuleStyle {
 
@@ -75,18 +76,36 @@ public struct TagCapsuleStyle {
 
 public extension TagCapsuleStyle {
 
-    /// The standard tag capsule style.
+    /// The standard style.
     ///
     /// You can set this style to change the global default.
     static var standard = TagCapsuleStyle()
 
-    /// The standard, selected tag capsule style.
+    /// The standard, selected style.
     ///
     /// You can set this style to change the global default.
     static var standardSelected = TagCapsuleStyle(
         foregroundColor: .white,
         backgroundColor: .black,
         borderColor: .white
+    )
+    
+    /// A standard material-based style.
+    ///
+    /// You can set this style to change the global default.
+    static var standardMaterial = TagCapsuleStyle(
+        foregroundColor: .primary,
+        backgroundColor: .blue,
+        backgroundMaterial: .thick
+    )
+    
+    /// A standard, selected material-based style.
+    ///
+    /// You can set this style to change the global default.
+    static var standardSelectedMaterial = TagCapsuleStyle(
+        foregroundColor: .primary,
+        backgroundColor: .blue,
+        backgroundMaterial: .thin
     )
 }
 
@@ -114,25 +133,5 @@ public extension EnvironmentValues {
     var tagCapsuleStyle: TagCapsuleStyle {
         get { self [TagCapsuleStyle.Key.self] }
         set { self [TagCapsuleStyle.Key.self] = newValue }
-    }
-}
-
-
-#Preview {
-
-    VStack {
-        TagCapsule("standard-tag")
-        TagCapsule("standard-selected-tag")
-            .font(.body.bold())
-            .tagCapsuleStyle(.standardSelected)
-            .shadow(radius: 0, x: 0, y: 2)
-        TagCapsule("custom")
-            .tagCapsuleStyle(.init(
-                backgroundColor: .clear,
-                backgroundMaterial: .thick
-            ))
-    }
-    .background {
-        LinearGradient(colors: [.blue, .red], startPoint: .top, endPoint: .bottom)
     }
 }

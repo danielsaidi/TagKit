@@ -128,7 +128,7 @@ private extension TagEditList {
         var newTag = ""
 
         @State
-        var tags = ["foo", "bar", "baz"]
+        var tags = ["tag-1"]
 
         @State
         var added: [String] = []
@@ -136,44 +136,81 @@ private extension TagEditList {
         var body: some View {
             NavigationView {
                 ScrollView {
-                    VStack {
-                        TagTextField(
-                            text: $newTag,
-                            placeholder: "Add new tag"
-                        )
-                        #if os(iOS)
-                        .textFieldStyle(.roundedBorder)
-                        #endif
-                        .overlay(addButton, alignment: .trailing)
-
-                        TagEditList(
-                            tags: $tags,
-                            additionalTags: ["foo", "bar", "baz", "tag-1", "tag-2", "tag-3", "tag-4", "tag-5"] + added
-                        ) { tag, hasTag in
-                            TagCapsule(tag)
-                                .tagCapsuleStyle(hasTag ? .standardSelected : .standard)
-                        }
+                    VStack(alignment: .leading, spacing: 30) {
+                        list("Standard Style", .standard, .standardSelected)
+                        list("Standard Material Style", .standardMaterial, .standardSelectedMaterial)
+                        list("Custom Style", .custom, .customSelected)
                     }
                     .padding()
                 }
-                .navigationTitle("TagKit")
+                .toolbar {
+                    ToolbarItem {
+                        HStack {
+                            TagTextField(
+                                text: $newTag,
+                                placeholder: "Add new tag"
+                            )
+                            #if os(iOS)
+                            .autocorrectionDisabled()
+                            .textFieldStyle(.roundedBorder)
+                            #endif
+                            Button("Add") {
+                                addTag(tag: newTag)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        private func list(
+            _ title: String,
+            _ style: TagCapsuleStyle,
+            _ selected: TagCapsuleStyle
+        ) -> some View {
+            VStack(alignment: .leading) {
+                Text(title)
+                    .font(.footnote)
+                
+                TagEditList(
+                    tags: $tags,
+                    additionalTags: ["tag-1", "tag-2", "tag-3"] + added
+                ) { tag, hasTag in
+                    TagCapsule(tag)
+                        .tagCapsuleStyle(hasTag ? selected : style)
+                }
             }
         }
 
-        private var addButton: some View {
-            Button("Add") {
-                addTag(tag: newTag)
-            }
-            .padding(.horizontal, 10)
-        }
-
-        private func addTag(tag: String) {
+        private func addTag(
+            tag: String,
+            selected: Bool = true
+        ) {
             let slug = tag.slugified()
-            tags.append(slug)
+            if selected {
+                tags.append(slug)
+            }
             added.append(slug)
             newTag = ""
         }
     }
 
     return Preview()
+        // .preferredColorScheme(.dark)
+}
+
+private extension TagCapsuleStyle {
+    
+    static var custom = TagCapsuleStyle(
+        foregroundColor: .black,
+        backgroundColor: .red,
+        borderWidth: 4
+    )
+    
+    static var customSelected = TagCapsuleStyle(
+        foregroundColor: .black,
+        backgroundColor: .red,
+        borderColor: .blue,
+        borderWidth: 4
+    )
 }
