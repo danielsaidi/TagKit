@@ -89,6 +89,7 @@ TagKit is available under the MIT license. See the [LICENSE][License] file for m
 
 [Email]: mailto:daniel.saidi@gmail.com
 
+[Website]: https://www.danielsaidi.com
 [GitHub]: https://github.com/danielsaidi
 [Twitter]: https://twitter.com/danielsaidi
 [Mastodon]: https://mastodon.social/@danielsaidi
