@@ -32,7 +32,7 @@ public struct TagTextField: View {
         text: Binding<String>,
         placeholder: String = "",
         configuration: SlugConfiguration = .standard,
-        onSubmit: OnNewTag? = nil
+        onNewTag: OnNewTag? = nil
     ) {
         self.text = Binding<String>(
             get: { text.wrappedValue.slugified() },
@@ -40,20 +40,20 @@ public struct TagTextField: View {
         )
         self.placeholder = placeholder
         self.configuration = configuration
-        self.onSubmit = onSubmit
+        self.onNewTag = onNewTag
     }
     
     private let text: Binding<String>
     private let placeholder: String
     private let configuration: SlugConfiguration
-    private let onSubmit: OnNewTag?
+    private let onNewTag: OnNewTag?
     
     public var body: some View {
         TextField(placeholder, text: text)
             .textCase(.lowercase)
             .withoutCapitalization()
             .onSubmit {
-                if let onSubmit = onSubmit {
+                if let onSubmit = onNewTag {
                     onSubmit(text.wrappedValue)
                 }
             }
@@ -79,7 +79,7 @@ private extension View {
         @State var text = ""
         
         var body: some View {
-            TagTextField(text: $text, placeholder: "Enter tag", onSubmit: {tag in })
+            TagTextField(text: $text, placeholder: "Enter tag", onNewTag: {tag in })
                 #if os(iOS)
                 .textFieldStyle(.roundedBorder)
                 #endif
