@@ -9,6 +9,11 @@
 import SwiftUI
 
 /**
+ This is a type for reacting to new tag
+ */
+public typealias OnNewTag = (String) -> Void
+
+/**
  This text field will automatically slugify any text that is
  entered into it.
 
@@ -26,7 +31,8 @@ public struct TagTextField: View {
     public init(
         text: Binding<String>,
         placeholder: String = "",
-        configuration: SlugConfiguration = .standard
+        configuration: SlugConfiguration = .standard,
+        onSubmit: OnNewTag? = nil
     ) {
         self.text = Binding<String>(
             get: { text.wrappedValue.slugified() },
@@ -34,16 +40,23 @@ public struct TagTextField: View {
         )
         self.placeholder = placeholder
         self.configuration = configuration
+        self.onSubmit = onSubmit
     }
     
     private let text: Binding<String>
     private let placeholder: String
     private let configuration: SlugConfiguration
+    private let onSubmit: OnNewTag?
     
     public var body: some View {
         TextField(placeholder, text: text)
             .textCase(.lowercase)
             .withoutCapitalization()
+            .onSubmit {
+                if let onSubmit = onSubmit {
+                    onSubmit(text.wrappedValue)
+                }
+            }
     }
 }
 
@@ -66,7 +79,7 @@ private extension View {
         @State var text = ""
         
         var body: some View {
-            TagTextField(text: $text, placeholder: "Enter tag")
+            TagTextField(text: $text, placeholder: "Enter tag", onSubmit: {tag in })
                 #if os(iOS)
                 .textFieldStyle(.roundedBorder)
                 #endif
