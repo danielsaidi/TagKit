@@ -14,15 +14,19 @@ let package = Package(
     products: [
         .library(
             name: "TagKit",
-            targets: ["TagKit"]),
+            targets: ["TagKit"]
+        )
     ],
-    dependencies: [],
     targets: [
         .target(
             name: "TagKit",
-            dependencies: []),
+            swiftSettings: [
+                .enableExperimentalFeature("StrictConcurrency")
+            ]
+        ),
         .testTarget(
             name: "TagKitTests",
-            dependencies: ["TagKit"]),
+            dependencies: ["TagKit"]
+        )
     ]
 )

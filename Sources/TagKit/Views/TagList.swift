@@ -81,6 +81,7 @@ public struct TagList<TagView: View>: View {
     }
 }
 
+@MainActor
 private extension TagList {
 
     var content: some View {

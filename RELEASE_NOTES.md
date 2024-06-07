@@ -3,6 +3,16 @@
 TagKit will use semver after 1.0.
 
 
+## 0.3
+
+This version adds support for strict concurrency.
+
+This requires standard styles to be converted to read-only values.
+
+This version also adjusts the visual appearance of some standard styles.
+
+
+
 ## 0.2
 
 This version bumps the package to Swift 5.9 and adds support for visionOS.

@@ -8,30 +8,24 @@
 
 import SwiftUI
 
-/**
- This style can be used to style ``TagCapsule`` views.
-
- The style lets you define colors and padding. For all other
- styles, use native view modifiers.
-
- TagKit comes with a boring ``TagCapsuleStyle/standard`` and
- an even worse``TagCapsuleStyle/standardSelected`` style, as
- well as a material-based ``TagCapsuleStyle/standardMaterial``
- and ``TagCapsuleStyle/standardMaterialSelected``.
- */
+/// This style can be used to style ``TagCapsule`` views. It
+/// lets you define visual styles like colors and padding.
+///
+/// There is a boring ``TagCapsuleStyle/standard`` style, as
+/// well as the even worse``TagCapsuleStyle/standardSelected``
+/// style. There are also some material-based styles such as
+/// ``TagCapsuleStyle/standardMaterial``.
 public struct TagCapsuleStyle {
 
-    /**
-     Create a new tag capsule style.
-
-     - Parameters:
-       - foregroundColor: The foreground color to use, by default `.black`.
-       - backgroundColor: The background color to use, by default `.gray`.
-       - backgroundMaterial: The background material to use, by default `.blue`.
-       - borderColor: The border color to use, by default `.clear`.
-       - borderWidth: The border width to use, by default `1`.
-       - padding: The intrinsic padding to apply, by default a small padding.
-     */
+    /// Create a new tag capsule style.
+    ///
+    /// - Parameters:
+    ///   - foregroundColor: The foreground color to use, by default `.black`.
+    ///   - backgroundColor: The background color to use, by default `.gray`.
+    ///   - backgroundMaterial: The background material to use, by default `.blue`.
+    ///   - borderColor: The border color to use, by default `.clear`.
+    ///   - borderWidth: The border width to use, by default `1`.
+    ///   - padding: The intrinsic padding to apply, by default a small padding.
     public init(
         foregroundColor: Color = .black,
         backgroundColor: Color = .gray,
@@ -77,37 +71,44 @@ public struct TagCapsuleStyle {
 public extension TagCapsuleStyle {
 
     /// The standard style.
-    ///
-    /// You can set this style to change the global default.
-    static var standard = TagCapsuleStyle()
+    static var standard: TagCapsuleStyle { .init() }
 
     /// The standard, selected style.
-    ///
-    /// You can set this style to change the global default.
-    static var standardSelected = TagCapsuleStyle(
-        foregroundColor: .white,
-        backgroundColor: .black,
-        borderColor: .white
-    )
+    static var standardSelected: TagCapsuleStyle {
+        .init(
+            foregroundColor: .white,
+            backgroundColor: .black,
+            borderColor: .white
+        )
+    }
     
     /// A standard material-based style.
-    ///
-    /// You can set this style to change the global default.
-    static var standardMaterial = TagCapsuleStyle(
-        foregroundColor: .primary,
-        backgroundColor: .blue,
-        backgroundMaterial: .thick
-    )
+    static var standardMaterial: TagCapsuleStyle {
+        .init(
+            foregroundColor: .primary,
+            backgroundColor: .clear,
+            backgroundMaterial: .ultraThin
+        )
+    }
     
     /// A standard, selected material-based style.
-    ///
-    /// You can set this style to change the global default.
-    static var standardSelectedMaterial = TagCapsuleStyle(
-        foregroundColor: .primary,
-        backgroundColor: .blue,
-        backgroundMaterial: .thin
-    )
+    static var standardMaterialSelected: TagCapsuleStyle {
+        .init(
+            foregroundColor: .primary,
+            backgroundColor: .clear,
+            backgroundMaterial: .regular
+        )
+    }
 }
+
+public extension TagCapsuleStyle {
+    
+    @available(*, deprecated, renamed: "standardMaterialSelected")
+    static var standardSelectedMaterial: TagCapsuleStyle {
+        .standardMaterialSelected
+    }
+}
+
 
 public extension View {
 
@@ -123,7 +124,7 @@ private extension TagCapsuleStyle {
 
     struct Key: EnvironmentKey {
 
-        public static var defaultValue: TagCapsuleStyle = .standard
+        public static var defaultValue: TagCapsuleStyle { .standard }
     }
 }
 

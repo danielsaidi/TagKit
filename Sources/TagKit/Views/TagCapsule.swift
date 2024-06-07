@@ -8,12 +8,10 @@
 
 import SwiftUI
 
-/**
- This view can be used to render tags within a capsule shape.
-
- The view will not slugify the provided tag string, only use
- the content you provide it with.
- */
+/// This view can be used to render tags in a capsule shape.
+///
+/// This view will not slugify the provided tag string, only
+/// use the content you provide.
 public struct TagCapsule: View {
 
     /// Create a tag capsule.
@@ -70,32 +68,37 @@ private extension View {
         LinearGradient(colors: [.blue, .red], startPoint: .top, endPoint: .bottom)
             .ignoresSafeArea()
         
-        VStack {
-            HStack {
-                TagCapsule("standard-tag")
-                TagCapsule("standard-selected-tag")
-                    .font(.body.bold())
-                    .tagCapsuleStyle(.standardSelected)
+        ScrollView {
+            VStack {
+                HStack {
+                    TagCapsule("standard")
+                        .tagCapsuleStyle(.standard)
+                    TagCapsule("standard-selected")
+                        .tagCapsuleStyle(.standardSelected)
+                }
+                HStack {
+                    TagCapsule("material")
+                        .tagCapsuleStyle(.standardMaterial)
+                    TagCapsule("material-selected")
+                        .tagCapsuleStyle(.standardSelectedMaterial)
+                }
+                
+                TagCapsule("spider-man")
+                    .tagCapsuleStyle(.init(
+                        foregroundColor: .black,
+                        backgroundColor: .red,
+                        borderColor: .blue,
+                        borderWidth: 4,
+                        padding: .init(
+                            top: 10,
+                            leading: 20,
+                            bottom: 12,
+                            trailing: 20
+                        )
+                    ))
+                    .shadow(radius: 0, y: 2)
             }
-            TagCapsule("spider-man")
-                .tagCapsuleStyle(.init(
-                    foregroundColor: .black,
-                    backgroundColor: .red,
-                    borderColor: .blue,
-                    borderWidth: 4,
-                    padding: .init(
-                        top: 10,
-                        leading: 20,
-                        bottom: 12,
-                        trailing: 20
-                    )
-                ))
-                .shadow(radius: 0, y: 2)
-            TagCapsule("material")
-                .tagCapsuleStyle(.init(
-                    backgroundColor: .clear,
-                    backgroundMaterial: .thick
-                ))
+            .padding(.top, 250)
         }
     }
 }

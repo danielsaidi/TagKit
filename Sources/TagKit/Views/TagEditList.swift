@@ -138,11 +138,19 @@ private extension TagEditList {
                 ScrollView {
                     VStack(alignment: .leading, spacing: 30) {
                         list("Standard Style", .standard, .standardSelected)
-                        list("Standard Material Style", .standardMaterial, .standardSelectedMaterial)
+                        list("Standard Material Style", .standardMaterial, .standardMaterialSelected)
                         list("Custom Style", .custom, .customSelected)
                     }
                     .padding()
+                    
                 }
+                .background(
+                    LinearGradient(
+                        colors: [.red, .blue],
+                        startPoint: .top,
+                        endPoint: .bottom
+                    )
+                )
                 .toolbar {
                     ToolbarItem {
                         HStack {
@@ -157,6 +165,7 @@ private extension TagEditList {
                             Button("Add") {
                                 addTag(tag: newTag)
                             }
+                            .disabled(newTag.isEmpty)
                         }
                     }
                 }
@@ -201,16 +210,20 @@ private extension TagEditList {
 
 private extension TagCapsuleStyle {
     
-    static var custom = TagCapsuleStyle(
-        foregroundColor: .black,
-        backgroundColor: .red,
-        borderWidth: 4
-    )
+    static var custom: TagCapsuleStyle {
+        .init(
+            foregroundColor: .black,
+            backgroundColor: .red,
+            borderWidth: 4
+        )
+    }
     
-    static var customSelected = TagCapsuleStyle(
-        foregroundColor: .black,
-        backgroundColor: .red,
-        borderColor: .blue,
-        borderWidth: 4
-    )
+    static var customSelected: TagCapsuleStyle {
+        .init(
+            foregroundColor: .black,
+            backgroundColor: .red,
+            borderColor: .blue,
+            borderWidth: 4
+        )
+    }
 }

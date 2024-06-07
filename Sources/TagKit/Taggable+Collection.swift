@@ -10,20 +10,15 @@ import Foundation
 
 public extension Collection where Element: Taggable {
 
-    /**
-     Get all the slugified tags in the collection.
-
-     The tags are slugified to remove any casing and spacing
-     differences that may exist between the items.
-     */
+    /// Get all the slugified tags in the collection.
+    ///
+    /// Read more about slugified strings in ``Slugifiable``.
     var allTags: [String] {
         let slugs = flatMap { $0.slugifiedTags }
         return Array(Set(slugs)).sorted()
     }
 
-    /**
-     Get all items in the collection that have a certain tag.
-     */
+    /// Get all items in the collection with a certain tag.
     func withTag(_ tag: String) -> [Element] {
         filter { $0.hasTag(tag) }
     }
