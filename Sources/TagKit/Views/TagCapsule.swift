@@ -35,11 +35,11 @@ public struct TagCapsule: View {
             .foregroundColor(style.foregroundColor)
             .materialCapsuleBackground(with: style.backgroundMaterial)
             .background(Capsule().fill(style.backgroundColor))
-            .padding(style.borderWidth)
+            .padding(style.border.width)
             .background(Capsule()
                 .strokeBorder(
-                    style.borderColor,
-                    lineWidth: style.borderWidth
+                    style.border.color,
+                    lineWidth: style.border.width
                 )
             )
             .compositingGroup()
@@ -81,23 +81,42 @@ private extension View {
                     TagCapsule("standard-selected")
                         .tagCapsuleStyle(.standardSelected)
                 }
-                
-                TagCapsule("spider-man")
-                    .tagCapsuleStyle(.init(
-                        foregroundColor: .black,
-                        backgroundColor: .red,
-                        borderColor: .blue,
-                        borderWidth: 4,
-                        padding: .init(
-                            top: 10,
-                            leading: 20,
-                            bottom: 12,
-                            trailing: 20
-                        )
-                    ))
-                    .shadow(radius: 0, y: 2)
+                HStack {
+                    TagCapsule("spider-man")
+                        .tagCapsuleStyle(.spiderman)
+                    TagCapsule("spider-man-selected")
+                        .tagCapsuleStyle(.spidermanSelected)
+                }
             }
             .padding(.top, 250)
         }
+    }
+}
+
+private extension TagCapsuleStyle {
+    
+    static var spiderman: Self {
+        .init(
+            foregroundColor: .black,
+            backgroundColor: .red,
+            backgroundMaterial: .thin,
+            border: .init(
+                color: .blue,
+                width: 4
+            ),
+            padding: .init(
+                top: 10,
+                leading: 20,
+                bottom: 12,
+                trailing: 20
+            )
+        )
+    }
+    
+    static var spidermanSelected: Self {
+        var style = Self.spiderman
+        style.backgroundMaterial = .none
+        style.shadow = .standardSelected
+        return style
     }
 }

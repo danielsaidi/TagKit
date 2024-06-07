@@ -212,7 +212,7 @@ private extension TagCapsuleStyle {
         .init(
             foregroundColor: .black,
             backgroundColor: .red,
-            borderWidth: 4
+            border: .init(width: 4)
         )
     }
     
@@ -220,8 +220,8 @@ private extension TagCapsuleStyle {
         .init(
             foregroundColor: .black,
             backgroundColor: .red,
-            borderColor: .blue,
-            borderWidth: 4
+            border: .init(width: 4),
+            shadow: .standardSelected
         )
     }
 }
