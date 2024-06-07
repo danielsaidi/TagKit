@@ -138,19 +138,18 @@ private extension TagEditList {
                 ScrollView {
                     VStack(alignment: .leading, spacing: 30) {
                         list("Standard Style", .standard, .standardSelected)
-                        list("Standard Material Style", .standardMaterial, .standardMaterialSelected)
                         list("Custom Style", .custom, .customSelected)
                     }
                     .padding()
                     
                 }
-                .background(
-                    LinearGradient(
-                        colors: [.red, .blue],
-                        startPoint: .top,
-                        endPoint: .bottom
-                    )
-                )
+//                .background(
+//                    LinearGradient(
+//                        colors: [.red, .blue],
+//                        startPoint: .top,
+//                        endPoint: .bottom
+//                    )
+//                )
                 .toolbar {
                     ToolbarItem {
                         HStack {
@@ -205,7 +204,6 @@ private extension TagEditList {
     }
 
     return Preview()
-        // .preferredColorScheme(.dark)
 }
 
 private extension TagCapsuleStyle {

@@ -11,6 +11,14 @@ This requires standard styles to be converted to read-only values.
 
 This version also adjusts the visual appearance of some standard styles.
 
+### ✨ Features
+
+* `TagCapsuleStyle` now supports specifying a shadow.
+
+### 💡 Behavior Changes
+
+* `TagCapsule.standard` and `.standardSelected` now use material backgrounds.
+
 
 
 ## 0.2

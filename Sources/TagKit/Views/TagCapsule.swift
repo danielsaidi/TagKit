@@ -33,7 +33,6 @@ public struct TagCapsule: View {
         Text(tag)
             .padding(style.padding)
             .foregroundColor(style.foregroundColor)
-            
             .materialCapsuleBackground(with: style.backgroundMaterial)
             .background(Capsule().fill(style.backgroundColor))
             .padding(style.borderWidth)
@@ -44,6 +43,12 @@ public struct TagCapsule: View {
                 )
             )
             .compositingGroup()
+            .shadow(
+                color: style.shadow.color,
+                radius: style.shadow.radius,
+                x: style.shadow.offsetX,
+                y: style.shadow.offsetY
+            )
             
     }
 }
@@ -75,12 +80,6 @@ private extension View {
                         .tagCapsuleStyle(.standard)
                     TagCapsule("standard-selected")
                         .tagCapsuleStyle(.standardSelected)
-                }
-                HStack {
-                    TagCapsule("material")
-                        .tagCapsuleStyle(.standardMaterial)
-                    TagCapsule("material-selected")
-                        .tagCapsuleStyle(.standardSelectedMaterial)
                 }
                 
                 TagCapsule("spider-man")
