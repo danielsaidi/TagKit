@@ -60,7 +60,7 @@ public struct TagList<TagView: View>: View {
         self.verticalSpacing = verticalSpacing
         self.tagView = tagView
         let initialHeight: CGFloat = container == .scrollView ? .zero : .infinity
-        _totalHeight = State(initialValue: initialHeight)
+        _viewSize = State(initialValue: CGSize(width: 0, height: initialHeight))
         self.onSelectTag = onSelectTag
     }
 
@@ -75,15 +75,14 @@ public struct TagList<TagView: View>: View {
 
     /// This type defines the tag view builder for the list.
     public typealias TagViewBuilder = (_ tag: String) -> TagView
-    @State private var viewSize: CGSize = CGSize(width: 0, height: 0)
-    @State
-    private var totalHeight: CGFloat
+    @State private var viewSize: CGSize
+
 
     public var body: some View {
         if container == .scrollView {
-            content.frame(height: totalHeight)
+            content.frame(height: viewSize.height)
         } else {
-            content.frame(maxHeight: totalHeight)
+            content.frame(maxHeight: viewSize.height)
         }
     }
 }
@@ -130,17 +129,10 @@ private extension TagList {
                     }
             }
         }
-        .background(viewHeightReader($totalHeight))
+
     }
 
-    func viewHeightReader(_ binding: Binding<CGFloat>) -> some View {
-        return GeometryReader { geo -> Color in
-            DispatchQueue.main.async {
-                binding.wrappedValue = geo.frame(in: .local).size.height
-            }
-            return .clear
-        }
-    }
+
 }
 
 #Preview {
