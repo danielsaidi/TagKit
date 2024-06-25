@@ -75,7 +75,7 @@ public struct TagList<TagView: View>: View {
 
     /// This type defines the tag view builder for the list.
     public typealias TagViewBuilder = (_ tag: String) -> TagView
-
+    @State private var viewSize: CGSize = CGSize(width: 0, height: 0)
     @State
     private var totalHeight: CGFloat
 
@@ -89,25 +89,21 @@ public struct TagList<TagView: View>: View {
 }
 
 private extension TagList {
+   
 
     var content: some View {
-        GeometryReader { geometry in
-            content(in: geometry)
-        }
-    }
-
-    func content(in g: GeometryProxy) -> some View {
         var width = CGFloat.zero
         var height = CGFloat.zero
         var lastHeight = CGFloat.zero
         let itemCount = tags.count
         return ZStack(alignment: .topLeading) {
+            HeightReader(height: $viewSize)
             ForEach(Array(tags.enumerated()), id: \.offset) { index, item in
                 tagView(item)
                     .padding([.horizontal], horizontalSpacing)
                     .padding([.vertical], verticalSpacing)
                     .alignmentGuide(.leading, computeValue: { d in
-                        if abs(width - d.width) > g.size.width {
+                        if abs(width - d.width) > viewSize.width {
                             width = 0
                             height -= lastHeight
                         }
