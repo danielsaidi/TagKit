@@ -8,36 +8,33 @@
 
 import SwiftUI
 
-/**
- This style can be used to style ``TagCapsule`` views.
-
- The style lets you define colors and padding. For all other
- styles, use native view modifiers.
-
- TagKit comes with a boring ``TagCapsuleStyle/standard`` and
- an even worse``TagCapsuleStyle/standardSelected`` style, as
- well as a material-based ``TagCapsuleStyle/standardMaterial``
- and ``TagCapsuleStyle/standardMaterialSelected``.
- */
+/// This style can be used to style ``TagCapsule`` views. It
+/// lets you define visual styles, like fore- and background
+/// colors, background materials, border, and padding.
+///
+/// To style other parts of the capsule, such as the font or
+/// the font weight, use native SwiftUI view modifiers.
+///
+/// The ``standard`` and ``standardSelected`` capsule styles
+/// use a primary foreground color, a clear background color
+/// and a material background.
 public struct TagCapsuleStyle {
-
-    /**
-     Create a new tag capsule style.
-
-     - Parameters:
-       - foregroundColor: The foreground color to use, by default `.black`.
-       - backgroundColor: The background color to use, by default `.gray`.
-       - backgroundMaterial: The background material to use, by default `.blue`.
-       - borderColor: The border color to use, by default `.clear`.
-       - borderWidth: The border width to use, by default `1`.
-       - padding: The intrinsic padding to apply, by default a small padding.
-     */
+    
+    /// Create a new tag capsule style.
+    ///
+    /// - Parameters:
+    ///   - foregroundColor: The foreground color, by default `.primary`.
+    ///   - backgroundColor: The background color, by default `.clear`.
+    ///   - backgroundMaterial: The background material, by default `.ultraThin`.
+    ///   - border: The border style, by default ``Border/standard``.
+    ///   - shadow: The shadow style, by default ``Shadow/standard``.
+    ///   - padding: The intrinsic padding to apply, by default a small padding.
     public init(
-        foregroundColor: Color = .black,
-        backgroundColor: Color = .gray,
-        backgroundMaterial: Material? = nil,
-        borderColor: Color = .clear,
-        borderWidth: Double = 1,
+        foregroundColor: Color = .primary,
+        backgroundColor: Color = .clear,
+        backgroundMaterial: Material? = .ultraThin,
+        border: Border = .standard,
+        shadow: Shadow = .standard,
         padding: EdgeInsets? = nil
     ) {
         var defaultPadding: EdgeInsets
@@ -50,64 +47,170 @@ public struct TagCapsuleStyle {
         self.foregroundColor = foregroundColor
         self.backgroundColor = backgroundColor
         self.backgroundMaterial = backgroundMaterial
-        self.borderColor = borderColor
-        self.borderWidth = borderWidth
+        self.border = border
+        self.shadow = shadow
         self.padding = padding ?? defaultPadding
     }
+    
+    @available(*, deprecated, message: "Use the new borderStyle initializer instead.")
+    public init(
+        foregroundColor: Color = .primary,
+        backgroundColor: Color = .clear,
+        backgroundMaterial: Material? = .ultraThin,
+        borderColor: Color = .clear,
+        borderWidth: Double = 1,
+        shadow: Shadow = .standard,
+        padding: EdgeInsets? = nil
+    ) {
+        self.init(
+            foregroundColor: foregroundColor,
+            backgroundColor: backgroundColor,
+            backgroundMaterial: backgroundMaterial,
+            border: .init(
+                color: borderColor,
+                width: borderWidth
+            ),
+            shadow: shadow,
+            padding: padding
+        )
+    }
 
-    /// The foreground color to use.
+    /// The foreground color.
     public var foregroundColor: Color
 
-    /// The background color to use.
+    /// The background color.
     public var backgroundColor: Color
     
-    /// The background material to use.
+    /// The background material.
     public var backgroundMaterial: Material?
 
-    /// The border color to use.
-    public var borderColor: Color
-
-    /// The border width to use.
-    public var borderWidth: Double
+    /// The border style.
+    public var border: Border
+    
+    /// The shadow style.
+    public var shadow: Shadow
 
     /// The padding to apply to the text.
     public var padding: EdgeInsets
 }
 
 public extension TagCapsuleStyle {
+    
+    struct Border {
+        
+        /// Create a new tag capsule border style.
+        ///
+        /// - Parameters:
+        ///   - color: The border color, by default `.clear`.
+        ///   - width: The border width, by default `1`.
+        public init(
+            color: Color = .clear,
+            width: Double = 1
+        ) {
+            self.color = color
+            self.width = width
+        }
+
+        /// The border color.
+        public var color: Color
+
+        /// The border width.
+        public var width: Double
+    }
+}
+
+public extension TagCapsuleStyle {
+    
+    struct Shadow {
+        
+        /// Create a new tag capsule shadow style.
+        ///
+        /// - Parameters:
+        ///   - color: The shadow color, by default `.clear`.
+        ///   - radius: The shadow radius, by default `0`.
+        ///   - offsetX: The x offset, by default `0`.
+        ///   - offsetY: The y offset, by default `1`.
+        public init(
+            color: Color = .clear,
+            radius: Double = 0,
+            offsetX: Double = 0,
+            offsetY: Double = 1
+        ) {
+            self.color = color
+            self.radius = radius
+            self.offsetX = offsetX
+            self.offsetY = offsetY
+        }
+
+        /// The shadow color.
+        public var color: Color
+
+        /// The shadow radius.
+        public var radius: Double
+        
+        /// The x offset.
+        public var offsetX: Double
+
+        /// The y offset.
+        public var offsetY: Double
+    }
+}
+
+public extension TagCapsuleStyle {
 
     /// The standard style.
-    ///
-    /// You can set this style to change the global default.
-    static var standard = TagCapsuleStyle()
+    static var standard: Self {
+        .init()
+    }
 
     /// The standard, selected style.
-    ///
-    /// You can set this style to change the global default.
-    static var standardSelected = TagCapsuleStyle(
-        foregroundColor: .white,
-        backgroundColor: .black,
-        borderColor: .white
-    )
-    
-    /// A standard material-based style.
-    ///
-    /// You can set this style to change the global default.
-    static var standardMaterial = TagCapsuleStyle(
-        foregroundColor: .primary,
-        backgroundColor: .blue,
-        backgroundMaterial: .thick
-    )
-    
-    /// A standard, selected material-based style.
-    ///
-    /// You can set this style to change the global default.
-    static var standardSelectedMaterial = TagCapsuleStyle(
-        foregroundColor: .primary,
-        backgroundColor: .blue,
-        backgroundMaterial: .thin
-    )
+    static var standardSelected: Self {
+        .init(
+            backgroundMaterial: .regular,
+            border: .standardSelected,
+            shadow: .standardSelected
+        )
+    }
 }
+
+public extension TagCapsuleStyle.Shadow {
+
+    /// The standard shadow style.
+    static var standard: Self {
+        .init()
+    }
+
+    /// The standard, selected shadow style.
+    static var standardSelected: Self {
+        .init(
+            color: .primary.opacity(0.5),
+            radius: 0
+        )
+    }
+}
+
+public extension TagCapsuleStyle.Border {
+
+    /// The standard border style.
+    static var standard: Self {
+        .init()
+    }
+
+    /// The standard, selected border style.
+    static var standardSelected: Self {
+        .init()
+    }
+}
+
+public extension TagCapsuleStyle {
+    
+    @available(*, deprecated, renamed: "standard")
+    static var standardMaterial: TagCapsuleStyle { .standard }
+    
+    @available(*, deprecated, renamed: "standardSelected")
+    static var standardSelectedMaterial: TagCapsuleStyle { .standardSelected }
+}
+
 
 public extension View {
 
@@ -123,7 +226,7 @@ private extension TagCapsuleStyle {
 
     struct Key: EnvironmentKey {
 
-        public static var defaultValue: TagCapsuleStyle = .standard
+        public static var defaultValue: TagCapsuleStyle { .standard }
     }
 }
 

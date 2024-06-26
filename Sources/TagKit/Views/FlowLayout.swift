@@ -10,19 +10,14 @@
 
 import SwiftUI
 
-/**
- This view lists data in a leading to trailing flow.
-
- The view will break to a new line whenever the view doesn't
- fit on the current line.
-
- You must specify a container type, since the view has to be
- rendered differently depending on if it's in a `ScrollView`
- or a `VerticalStack`.
-
- The view is internal and kept for reference, if we will use
- it on other ways in the future.
- */
+/// This view lists data in a leading to trailing flow.
+///
+/// The view will break to a new line whenever the view does
+/// not fit on the current line.
+///
+/// You must specify a container type, since the view has to
+/// be rendered differently depending on in the container it
+/// is used in, e.g.  `ScrollView`, `VStack`, etc.
 public struct FlowLayout<ItemType, ItemView: View>: View {
 
     /// Create a flow layout.
@@ -75,6 +70,7 @@ public struct FlowLayout<ItemType, ItemView: View>: View {
     }
 }
 
+@MainActor
 private extension FlowLayout {
 
     var content: some View {

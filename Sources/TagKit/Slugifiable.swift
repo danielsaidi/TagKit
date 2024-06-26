@@ -8,39 +8,32 @@
 
 import Foundation
 
-/**
- This protocol describes a type that can be slugified into a
- slug representation that can be used in e.g. tags.
-
- Types that implement this protocol get access to a bunch of
- additional functionality, e.g. ``slugified(configuration:)``.
-
- When slugifying, "Hello there, friends!" will by default be
- converted to `hello-there-friends`, but this format depends
- on the ``SlugConfiguration`` that is used.
-
- This protocol is automatically implemented by `String`.
- */
+/// This protocol describes a slugifiable type, which can be
+/// represented as a slugified string.
+///
+/// Slugified strings are for instance used in urls and tags,
+/// where a text is represented by removing unsupported text
+/// components. The standard format can be customized with a
+/// custom ``SlugConfiguration``.
+///
+/// By default, `Hello, world!` is slugified to `hello-world`.
+///
+/// This protocol is automatically implemented by `String`.
 public protocol Slugifiable {
 
-    /**
-     The slugifiable value that will be used when creating a
-     slugified string.
-     */
+    /// The value used to create a slugified representation.
     var slugifiableValue: String { get }
 }
 
 public extension Slugifiable {
 
-    /**
-     Convert the slugifiable value to a slugified string.
-
-     With the default configuration, `I'd love an AppleCar!`
-     will be slugified as `i-d-love-an-apple-car`.
-
-     - Parameters:
-       - configuration: The configuration to use, by default ``SlugConfiguration/standard``.
-     */
+    /// Convert the slugifiable value to a slugified string.
+    ///
+    /// With the default configuration, `Hello, world!` will
+    /// be slugified to `hello-world`.
+    ///
+    /// - Parameters:
+    ///   - configuration: The configuration to use, by default ``SlugConfiguration/standard``.
     func slugified(
         configuration: SlugConfiguration = .standard
     ) -> String {
@@ -55,9 +48,5 @@ public extension Slugifiable {
 
 extension String: Slugifiable {
 
-    /**
-     The sluggable value that will be used when creating the
-     slugified result.
-     */
     public var slugifiableValue: String { self }
 }
