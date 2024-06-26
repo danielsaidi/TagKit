@@ -88,8 +88,6 @@ public struct TagList<TagView: View>: View {
 }
 
 private extension TagList {
-   
-
     var content: some View {
         var width = CGFloat.zero
         var height = CGFloat.zero
@@ -127,12 +125,11 @@ private extension TagList {
                             onSelectTag(item)
                         }
                     }
+                    .background(.clear)
             }
         }
 
     }
-
-
 }
 
 #Preview {
