@@ -32,6 +32,8 @@ public enum TagListContainer {
  You must specify a container type, since the list has to be
  rendered differently depending on if it's in a `ScrollView`
  or a `VerticalStack`.
+ 
+ You will often want to add a ``onTapGesture(count:perform:)`` inside the `TapViewBuilder`.
  */
 public struct TagList<TagView: View>: View {
 

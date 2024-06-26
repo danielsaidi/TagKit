@@ -9,16 +9,14 @@
 import SwiftUI
 
 /**
- This is a type for reacting to new tag
- */
-public typealias OnNewTag = (String) -> Void
-
-/**
  This text field will automatically slugify any text that is
  entered into it.
 
  This text field will also make it harder to type characters
  that are not in the configuration's allowed character set.
+ 
+ You often want to add an ``onSubmit(of:_:)`` on 
+ the use of this View in order to react on new tags.
  */
 public struct TagTextField: View {
 
@@ -31,8 +29,7 @@ public struct TagTextField: View {
     public init(
         text: Binding<String>,
         placeholder: String = "",
-        configuration: SlugConfiguration = .standard,
-        onNewTag: OnNewTag? = nil
+        configuration: SlugConfiguration = .standard
     ) {
         self.text = Binding<String>(
             get: { text.wrappedValue.slugified() },
@@ -40,23 +37,16 @@ public struct TagTextField: View {
         )
         self.placeholder = placeholder
         self.configuration = configuration
-        self.onNewTag = onNewTag
     }
     
     private let text: Binding<String>
     private let placeholder: String
     private let configuration: SlugConfiguration
-    private let onNewTag: OnNewTag?
     
     public var body: some View {
         TextField(placeholder, text: text)
             .textCase(.lowercase)
             .withoutCapitalization()
-            .onSubmit {
-                if let onSubmit = onNewTag {
-                    onSubmit(text.wrappedValue)
-                }
-            }
     }
 }
 
@@ -79,7 +69,7 @@ private extension View {
         @State var text = ""
         
         var body: some View {
-            TagTextField(text: $text, placeholder: "Enter tag", onNewTag: {tag in })
+            TagTextField(text: $text, placeholder: "Enter tag")
                 #if os(iOS)
                 .textFieldStyle(.roundedBorder)
                 #endif
