@@ -14,6 +14,9 @@ import SwiftUI
 
  This text field will also make it harder to type characters
  that are not in the configuration's allowed character set.
+ 
+ You often want to add an ``onSubmit(of:_:)`` on 
+ the use of this View in order to react on new tags.
  */
 public struct TagTextField: View {
 

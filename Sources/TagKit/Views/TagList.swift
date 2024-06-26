@@ -10,6 +10,7 @@
 
 import SwiftUI
 
+
 /// This enum specifies supported tag list container types.
 public enum TagListContainer {
 
@@ -31,6 +32,8 @@ public enum TagListContainer {
  You must specify a container type, since the list has to be
  rendered differently depending on if it's in a `ScrollView`
  or a `VerticalStack`.
+ 
+ You will often want to add a ``onTapGesture(count:perform:)`` inside the `TapViewBuilder`.
  */
 public struct TagList<TagView: View>: View {
 
@@ -48,6 +51,7 @@ public struct TagList<TagView: View>: View {
         horizontalSpacing: CGFloat = 5,
         verticalSpacing: CGFloat = 5,
         @ViewBuilder tagView: @escaping TagViewBuilder
+        
     ) {
         self.tags = tags
         self.container = container
@@ -55,7 +59,7 @@ public struct TagList<TagView: View>: View {
         self.verticalSpacing = verticalSpacing
         self.tagView = tagView
         let initialHeight: CGFloat = container == .scrollView ? .zero : .infinity
-        _totalHeight = State(initialValue: initialHeight)
+        _viewSize = State(initialValue: CGSize(width: 0, height: initialHeight))
     }
 
     private let tags: [String]
@@ -68,40 +72,33 @@ public struct TagList<TagView: View>: View {
 
     /// This type defines the tag view builder for the list.
     public typealias TagViewBuilder = (_ tag: String) -> TagView
+    @State private var viewSize: CGSize
 
-    @State
-    private var totalHeight: CGFloat
 
     public var body: some View {
         if container == .scrollView {
-            content.frame(height: totalHeight)
+            content.frame(height: viewSize.height)
         } else {
-            content.frame(maxHeight: totalHeight)
+            content.frame(maxHeight: viewSize.height)
         }
     }
 }
 
 @MainActor
 private extension TagList {
-
     var content: some View {
-        GeometryReader { geometry in
-            content(in: geometry)
-        }
-    }
-
-    func content(in g: GeometryProxy) -> some View {
         var width = CGFloat.zero
         var height = CGFloat.zero
         var lastHeight = CGFloat.zero
         let itemCount = tags.count
         return ZStack(alignment: .topLeading) {
+            HeightReader(height: $viewSize)
             ForEach(Array(tags.enumerated()), id: \.offset) { index, item in
                 tagView(item)
                     .padding([.horizontal], horizontalSpacing)
                     .padding([.vertical], verticalSpacing)
                     .alignmentGuide(.leading, computeValue: { d in
-                        if abs(width - d.width) > g.size.width {
+                        if abs(width - d.width) > viewSize.width {
                             width = 0
                             height -= lastHeight
                         }
@@ -121,18 +118,10 @@ private extension TagList {
                         }
                         return result
                     })
+                    .background(.clear)
             }
         }
-        .background(viewHeightReader($totalHeight))
-    }
 
-    func viewHeightReader(_ binding: Binding<CGFloat>) -> some View {
-        return GeometryReader { geo -> Color in
-            DispatchQueue.main.async {
-                binding.wrappedValue = geo.frame(in: .local).size.height
-            }
-            return .clear
-        }
     }
 }
 
