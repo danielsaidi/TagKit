@@ -11,8 +11,6 @@
 import SwiftUI
 
 
-public typealias OnSelectTag = (String?) -> Void
-
 /// This enum specifies supported tag list container types.
 public enum TagListContainer {
 
@@ -50,7 +48,6 @@ public struct TagList<TagView: View>: View {
         container: TagListContainer = .scrollView,
         horizontalSpacing: CGFloat = 5,
         verticalSpacing: CGFloat = 5,
-        onSelectTag: OnSelectTag? = nil,
         @ViewBuilder tagView: @escaping TagViewBuilder
         
     ) {
@@ -61,14 +58,12 @@ public struct TagList<TagView: View>: View {
         self.tagView = tagView
         let initialHeight: CGFloat = container == .scrollView ? .zero : .infinity
         _viewSize = State(initialValue: CGSize(width: 0, height: initialHeight))
-        self.onSelectTag = onSelectTag
     }
 
     private let tags: [String]
     private let container: TagListContainer
     private let horizontalSpacing: CGFloat
     private let verticalSpacing: CGFloat
-    private let onSelectTag: OnSelectTag?
 
     @ViewBuilder
     private let tagView: TagViewBuilder
@@ -121,11 +116,6 @@ private extension TagList {
                         }
                         return result
                     })
-                    .onTapGesture {
-                        if let onSelectTag = onSelectTag {
-                            onSelectTag(item)
-                        }
-                    }
                     .background(.clear)
             }
         }
