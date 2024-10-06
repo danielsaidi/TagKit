@@ -1,10 +1,10 @@
 <p align="center">
-    <img src ="Resources/Logo_GitHub.png" alt="TagKit Logo" title="TagKit" />
+    <img src ="Resources/Logo_Rounded.png" alt="TagKit Logo" title="TagKit" />
 </p>
 
 <p align="center">
     <img src="https://img.shields.io/github/v/release/danielsaidi/TagKit?color=%2300550&sort=semver" alt="Version" />
-    <img src="https://img.shields.io/badge/Swift-5.9-orange.svg" alt="Swift 5.9" />
+    <img src="https://img.shields.io/badge/Swift-6.0-orange.svg" alt="Swift 6.0" />
     <img src="https://img.shields.io/badge/platform-SwiftUI-blue.svg" alt="Swift UI" title="Swift UI" />
     <img src="https://img.shields.io/github/license/danielsaidi/TagKit" alt="MIT License" />
         <a href="https://twitter.com/danielsaidi">
@@ -19,15 +19,13 @@
 
 ## About TagKit
 
-TagKit is a Swift SDK that makes it easy to work with tags and slugification in `Swift` and `SwiftUI`. 
-
-The result can look like this or completely different: 
+TagKit is a Swift SDK that makes it easy to work with tags and string/ID slugification in `Swift` and `SwiftUI`.
 
 <p align="center">
     <img src="Resources/Demo-v2.gif" width=450 />
 </p>
 
-Tags and views can be customized to fit your needs. You can slug and tag any model and customize the slug format. When presenting tags, you can apply custom styling and use any views you like.
+Tags and tag views can be customized to fit your needs. You can slug and tag any model and customize the slug format. When presenting tags, you can apply custom styling and use any views you like.
 
 TagKit also has a views that make it easier to work with tags. For instance, ``TagList`` and ``TagEditList`` let you list and edit tags, ``TagCapsule`` renders styled tags and ``TagTextField`` automatically slugifies text as you type.
 
@@ -46,19 +44,13 @@ https://github.com/danielsaidi/TagKit.git
 
 ## Getting started
 
-The [online documentation][Documentation] has a [getting-started guide][Getting-Started] that helps you get started with TagKit.
+The online documentation has a [getting-started guide][Getting-Started] that helps you get started with TagKit.
 
 
 
 ## Documentation
 
-The [online documentation][Documentation] has more information, articles, code examples, etc. 
-
-
-
-## Demo Application
-
-I will create a demo application for this package once it gets 100+ stars.
+The online [documentation][Documentation] has more information, articles, code examples, etc.
 
 
 
@@ -96,7 +88,7 @@ TagKit is available under the MIT license. See the [LICENSE][License] file for m
 [OpenSource]: https://danielsaidi.com/opensource
 [Sponsors]: https://github.com/sponsors/danielsaidi
 
-[Documentation]: https://danielsaidi.github.io/TagKit/documentation/tagkit/
+[Documentation]: https://danielsaidi.github.io/TagKit
 [Getting-Started]: https://danielsaidi.github.io/TagKit/documentation/tagkit/getting-started
 
 [License]: https://github.com/danielsaidi/TagKit/blob/master/LICENSE

@@ -3,6 +3,12 @@
 TagKit will use semver after 1.0.
 
 
+## 0.4
+
+This version makes TagKit use Swift 6.
+
+
+
 ## 0.3
 
 This version adds support for strict concurrency.
