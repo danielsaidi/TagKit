@@ -96,7 +96,7 @@ public struct TagCapsuleStyle {
 
 public extension TagCapsuleStyle {
     
-    struct Border {
+    struct Border : Sendable {
         
         /// Create a new tag capsule border style.
         ///
@@ -121,7 +121,7 @@ public extension TagCapsuleStyle {
 
 public extension TagCapsuleStyle {
     
-    struct Shadow {
+    struct Shadow : Sendable{
         
         /// Create a new tag capsule shadow style.
         ///
