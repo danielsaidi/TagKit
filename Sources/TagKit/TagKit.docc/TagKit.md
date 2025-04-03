@@ -10,7 +10,7 @@ TagKit is a Swift SDK that makes it easy to work with tags and slugification in 
 
 TagKit is a Swift SDK that makes it easy to work with tags and slugified strings in `Swift` and `SwiftUI`.
 
-You can slug and tag any type and customize the slug format, and use the built-in views to list and edit tags with minimum effort.
+You can slug and tag any type, customize the slug format, and use the built-in views to list and edit tags with ease.
 
 
 
@@ -85,14 +85,12 @@ TagKit is available under the MIT license.
 
 ## Topics
 
-### Articles
+### Slugs
 
-- <doc:Getting-Started>
-
-### Types
-
-- ``Slugifiable``
 - ``SlugConfiguration``
+
+### Tags
+
 - ``Taggable``
 
 ### Views

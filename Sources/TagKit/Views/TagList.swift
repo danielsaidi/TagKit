@@ -5,7 +5,7 @@
 //  Based on https://github.com/globulus/swiftui-flow-layout
 //
 //  Created by Daniel Saidi on 2022-08-18.
-//  Copyright © 2022-2024 Daniel Saidi. All rights reserved.
+//  Copyright © 2022-2025 Daniel Saidi. All rights reserved.
 //
 
 import SwiftUI

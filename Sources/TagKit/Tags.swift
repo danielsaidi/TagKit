@@ -1,9 +1,9 @@
 //
-//  Taggable.swift
+//  Tags.swift
 //  TagKit
 //
 //  Created by Daniel Saidi on 2022-08-06.
-//  Copyright © 2022-2024 Daniel Saidi. All rights reserved.
+//  Copyright © 2022-2025 Daniel Saidi. All rights reserved.
 //
 
 import Foundation
@@ -60,7 +60,7 @@ public extension Taggable {
     func slugifiedTags(
         configuration: SlugConfiguration = .standard
     ) -> [String] {
-        tags.map { $0.slugified(configuration: configuration) }
+        tags.map { $0.slugified(with: configuration) }
     }
 
     /// Toggle a tag on the taggable type.
@@ -70,5 +70,21 @@ public extension Taggable {
         } else {
             addTag(tag)
         }
+    }
+}
+
+public extension Collection where Element: Taggable {
+
+    /// Get all the slugified tags in the collection.
+    ///
+    /// Read more about slugified strings in ``Slugifiable``.
+    var allTags: [String] {
+        let slugs = flatMap { $0.slugifiedTags }
+        return Array(Set(slugs)).sorted()
+    }
+
+    /// Get all items in the collection with a certain tag.
+    func withTag(_ tag: String) -> [Element] {
+        filter { $0.hasTag(tag) }
     }
 }
