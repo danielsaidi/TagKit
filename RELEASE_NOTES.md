@@ -8,6 +8,10 @@ TagKit will use semver after 1.0.
 
 This version makes TagKit use Swift 6.
 
+### 💥 Breaking Changes
+
+* `FlowLayout` did not support Swift 6 strict concurrency and has been removed.
+
 
 
 ## 0.4.1
