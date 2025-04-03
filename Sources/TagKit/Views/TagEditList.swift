@@ -46,7 +46,7 @@ public struct TagEditList<TagView: View>: View {
 
     public var body: some View {
         TagList(
-            tags: allTags,
+            tags: allTags
         ) { tag in
             Button(action: { toggleTag(tag) }) {
                 tagView(tag, hasTag(tag))
