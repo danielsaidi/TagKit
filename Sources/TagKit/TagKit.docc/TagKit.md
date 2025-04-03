@@ -66,7 +66,7 @@ Once a type implements ``Taggable``, it can make use of a lot of automatically i
 
 ### Views
 
-TagKit has a bunch of tag related types, like ``TagCapsule``, ``TagList``, ``TagEditList`` and ``TagTextField``.
+TagKit has a couple of tag related views, like ``TagList``, ``TagEditList`` and ``TagTextField``.
 
 
 
@@ -95,9 +95,6 @@ TagKit is available under the MIT license.
 
 ### Views
 
-- ``TagCapsule``
-- ``TagCapsuleStyle``
-- ``TagEditList``
 - ``TagList``
-- ``TagListContainer``
+- ``TagEditList``
 - ``TagTextField``

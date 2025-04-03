@@ -8,23 +8,15 @@
 
 import SwiftUI
 
-/**
- This view lists tags in a leading to trailing flow and lets
- you tap tags to add and remove them from a provided binding.
-
- The view takes a list of tags and use a tag view builder to
- render a view for each tag. You can use any custom tag view,
- for instance a ``TagCapsule``.
- 
- The view can take a list of additional tags. Tho avoid that
- tags disappear from the list when you toggle them off. Make
- sure to use the `additionalTags` parameter to specify which
- tags you always want to show in the list.
-
- You must specify a `container`, since this list is rendered
- differently depending on if it's added to a `ScrollView` or
- a `VerticalStack`.
- */
+/// This view lists a collection of tags, that can be tapped
+/// to toggle them in the provided tags binding.
+///
+/// This view will list all tags in the provided binding, as
+/// well as a list of additional tags which should be listed
+/// even when they are not set in the binding.
+///
+/// Note that this list only renders the tag views. You must
+/// specify the container in which they will be rendered.
 public struct TagEditList<TagView: View>: View {
 
     /// Create a tag edit list.
@@ -32,49 +24,29 @@ public struct TagEditList<TagView: View>: View {
     /// - Parameters:
     ///   - tags: The items to render in the layout.
     ///   - additionalTags: Additional tags to pick from.
-    ///   - container: The container type, by default `.scrollView`.
-    ///   - horizontalSpacing: The horizontal spacing between items.
-    ///   - verticalSpacing: The vertical spacing between items.
     ///   - tagView: The tag view builder.
     public init(
         tags: Binding<[String]>,
         additionalTags: [String],
-        container: TagListContainer = .scrollView,
-        horizontalSpacing: CGFloat = 5,
-        verticalSpacing: CGFloat = 5,
         @ViewBuilder tagView: @escaping TagViewBuilder
     ) {
         self.tags = tags
         self.additionalTags = additionalTags
-        self.container = container
-        self.horizontalSpacing = horizontalSpacing
-        self.verticalSpacing = verticalSpacing
         self.tagView = tagView
-        let initialHeight: CGFloat = container == .scrollView ? .zero : .infinity
-        _totalHeight = State(initialValue: initialHeight)
     }
 
     private let tags: Binding<[String]>
     private let additionalTags: [String]
-    private let container: TagListContainer
-    private let horizontalSpacing: CGFloat
-    private let verticalSpacing: CGFloat
-
+    
     @ViewBuilder
     private let tagView: TagViewBuilder
 
     /// This type defines the tag view builder for the list.
     public typealias TagViewBuilder = (_ tag: String, _ hasTag: Bool) -> TagView
 
-    @State
-    private var totalHeight: CGFloat
-
     public var body: some View {
         TagList(
             tags: allTags,
-            container: container,
-            horizontalSpacing: horizontalSpacing,
-            verticalSpacing: verticalSpacing
         ) { tag in
             Button(action: { toggleTag(tag) }) {
                 tagView(tag, hasTag(tag))
@@ -124,45 +96,41 @@ private extension TagEditList {
 
     struct Preview: View {
 
-        @State
-        var newTag = ""
-
-        @State
-        var tags = ["tag-1"]
-
-        @State
-        var added: [String] = []
+        @State var newTag = ""
+        @State var tags = ["tag-1"]
+        
+        let slugConfiguration = SlugConfiguration.standard
 
         var body: some View {
             NavigationView {
                 ScrollView {
-                    VStack(alignment: .leading, spacing: 30) {
-                        list("Standard Style", .standard, .standardSelected)
-                        list("Custom Style", .custom, .customSelected)
+                    TagEditList(
+                        tags: $tags,
+                        additionalTags: ["always-visible"]
+                    ) { tag, isAdded in
+                        Text(tag.slugified())
+                            .font(.system(size: 12))
+                            .foregroundColor(.black)
+                            .padding(.horizontal, 8)
+                            .padding(.vertical, 4)
+                            .background(isAdded ? Color.green : Color.primary.opacity(0.1), in: .capsule)
                     }
                     .padding()
-                    
                 }
-//                .background(
-//                    LinearGradient(
-//                        colors: [.red, .blue],
-//                        startPoint: .top,
-//                        endPoint: .bottom
-//                    )
-//                )
                 .toolbar {
                     ToolbarItem {
                         HStack {
                             TagTextField(
                                 text: $newTag,
-                                placeholder: "Add new tag"
+                                placeholder: "Add new tag",
+                                configuration: slugConfiguration
                             )
                             #if os(iOS)
                             .autocorrectionDisabled()
                             .textFieldStyle(.roundedBorder)
                             #endif
                             Button("Add") {
-                                addTag(tag: newTag)
+                                addNewTag(tag: newTag)
                             }
                             .disabled(newTag.isEmpty)
                         }
@@ -170,58 +138,18 @@ private extension TagEditList {
                 }
             }
         }
-        
-        private func list(
-            _ title: String,
-            _ style: TagCapsuleStyle,
-            _ selected: TagCapsuleStyle
-        ) -> some View {
-            VStack(alignment: .leading) {
-                Text(title)
-                    .font(.footnote)
-                
-                TagEditList(
-                    tags: $tags,
-                    additionalTags: ["tag-1", "tag-2", "tag-3"] + added
-                ) { tag, hasTag in
-                    TagCapsule(tag)
-                        .tagCapsuleStyle(hasTag ? selected : style)
-                }
-            }
-        }
 
-        private func addTag(
+        private func addNewTag(
             tag: String,
             selected: Bool = true
         ) {
-            let slug = tag.slugified()
+            let slug = tag.slugified(with: slugConfiguration)
             if selected {
                 tags.append(slug)
             }
-            added.append(slug)
             newTag = ""
         }
     }
 
     return Preview()
-}
-
-private extension TagCapsuleStyle {
-    
-    static var custom: TagCapsuleStyle {
-        .init(
-            foregroundColor: .black,
-            backgroundColor: .red,
-            border: .init(width: 4)
-        )
-    }
-    
-    static var customSelected: TagCapsuleStyle {
-        .init(
-            foregroundColor: .black,
-            backgroundColor: .red,
-            border: .init(width: 4),
-            shadow: .standardSelected
-        )
-    }
 }

@@ -8,10 +8,7 @@
 
 import SwiftUI
 
-/// This view can be used to render tags in a capsule shape.
-///
-/// This view will not slugify the provided tag string, only
-/// use the content you provide.
+@available(*, deprecated, message: "Just use a regular Text element and style it as you wish.")
 public struct TagCapsule: View {
 
     /// Create a tag capsule.
@@ -67,32 +64,7 @@ private extension View {
     }
 }
 
-#Preview {
-    
-    ZStack {
-        LinearGradient(colors: [.blue, .red], startPoint: .top, endPoint: .bottom)
-            .ignoresSafeArea()
-        
-        ScrollView {
-            VStack {
-                HStack {
-                    TagCapsule("standard")
-                        .tagCapsuleStyle(.standard)
-                    TagCapsule("standard-selected")
-                        .tagCapsuleStyle(.standardSelected)
-                }
-                HStack {
-                    TagCapsule("spider-man")
-                        .tagCapsuleStyle(.spiderman)
-                    TagCapsule("spider-man-selected")
-                        .tagCapsuleStyle(.spidermanSelected)
-                }
-            }
-            .padding(.top, 250)
-        }
-    }
-}
-
+@available(*, deprecated, message: "Just use a regular Text element and style it as you wish.")
 private extension TagCapsuleStyle {
     
     static var spiderman: Self {

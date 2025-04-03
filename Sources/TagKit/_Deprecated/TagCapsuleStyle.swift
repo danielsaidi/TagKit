@@ -8,16 +8,7 @@
 
 import SwiftUI
 
-/// This style can be used to style ``TagCapsule`` views. It
-/// lets you define visual styles, like fore- and background
-/// colors, background materials, border, and padding.
-///
-/// To style other parts of the capsule, such as the font or
-/// the font weight, use native SwiftUI view modifiers.
-///
-/// The ``standard`` and ``standardSelected`` capsule styles
-/// use a primary foreground color, a clear background color
-/// and a material background.
+@available(*, deprecated, message: "Just use a regular Text element and style it as you wish.")
 public struct TagCapsuleStyle {
     
     /// Create a new tag capsule style.
@@ -94,6 +85,7 @@ public struct TagCapsuleStyle {
     public var padding: EdgeInsets
 }
 
+@available(*, deprecated, message: "Just use a regular Text element and style it as you wish.")
 public extension TagCapsuleStyle {
     
     struct Border {
@@ -117,9 +109,6 @@ public extension TagCapsuleStyle {
         /// The border width.
         public var width: Double
     }
-}
-
-public extension TagCapsuleStyle {
     
     struct Shadow {
         
@@ -154,9 +143,6 @@ public extension TagCapsuleStyle {
         /// The y offset.
         public var offsetY: Double
     }
-}
-
-public extension TagCapsuleStyle {
 
     /// The standard style.
     static var standard: Self {
@@ -173,6 +159,7 @@ public extension TagCapsuleStyle {
     }
 }
 
+@available(*, deprecated, message: "Just use a regular Text element and style it as you wish.")
 public extension TagCapsuleStyle.Shadow {
 
     /// The standard shadow style.
@@ -189,6 +176,7 @@ public extension TagCapsuleStyle.Shadow {
     }
 }
 
+@available(*, deprecated, message: "Just use a regular Text element and style it as you wish.")
 public extension TagCapsuleStyle.Border {
 
     /// The standard border style.
@@ -202,16 +190,7 @@ public extension TagCapsuleStyle.Border {
     }
 }
 
-public extension TagCapsuleStyle {
-    
-    @available(*, deprecated, renamed: "standard")
-    static var standardMaterial: TagCapsuleStyle { .standard }
-    
-    @available(*, deprecated, renamed: "standardSelected")
-    static var standardSelectedMaterial: TagCapsuleStyle { .standardSelected }
-}
-
-
+@available(*, deprecated, message: "Just use a regular Text element and style it as you wish.")
 public extension View {
 
     /// Apply a ``TagCapsule`` style to the view hierarchy.
@@ -222,6 +201,7 @@ public extension View {
     }
 }
 
+@available(*, deprecated, message: "Just use a regular Text element and style it as you wish.")
 private extension TagCapsuleStyle {
 
     struct Key: EnvironmentKey {
@@ -230,6 +210,7 @@ private extension TagCapsuleStyle {
     }
 }
 
+@available(*, deprecated, message: "Just use a regular Text element and style it as you wish.")
 public extension EnvironmentValues {
 
     /// This value can bind to a line spacing picker config.

@@ -6,11 +6,19 @@ TagKit will use semver after 1.0.
 
 ## 0.5
 
-This version makes TagKit use Swift 6.
+This version makes TagKit use Swift 6, by removing the flow layout parts from the library.
+
+The `TagList` and `TagEditList` is therefore much simpler now before, and can be used in more ways. 
+
+### 💡 Behavior Changes
+
+* `TagList` and `TagEditList` now just lists the provided tags.
+* `TagList` and `TagEditList` can now be rendered in any layout container.
 
 ### 🗑️ Deprecated
 
 * `Slugifiable` has been deprecated. Just use the `slugified` string extension instead.
+* `TagCapsule` has been deprecated, since it's better to just customize a regular `Text`.
 
 ### 💥 Breaking Changes
 
