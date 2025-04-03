@@ -8,15 +8,8 @@
 
 import Foundation
 
-/// This protocol describes a slugifiable type, which can be
-/// represented as a slugified string.
-///
-/// Slugified strings are for instance used in urls and tags,
-/// where a text is represented by removing unsupported text
-/// components. The standard format can be customized with a
-/// custom ``SlugConfiguration``.
-///
-/// By default, `Hello, world!` is slugified to `hello-world`.
+/// This protocol can be implemented by any type that can be
+/// converted to a slugified string.
 ///
 /// This protocol is automatically implemented by `String`.
 public protocol Slugifiable {
@@ -37,12 +30,10 @@ public extension Slugifiable {
     func slugified(
         configuration: SlugConfiguration = .standard
     ) -> String {
-        let chars = configuration.allowedCharacterSet.inverted
-        let separator = configuration.separator
-        return slugifiableValue.lowercased()
-            .components(separatedBy: chars)
+        slugifiableValue.lowercased()
+            .components(separatedBy: configuration.notAllowedCharacterSet)
             .filter { !$0.isEmpty }
-            .joined(separator: separator)
+            .joined(separator: configuration.separator)
     }
 }
 

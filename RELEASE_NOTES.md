@@ -4,6 +4,12 @@ TagKit will use semver after 1.0.
 
 
 
+## 0.5
+
+This version makes TagKit use Swift 6.
+
+
+
 ## 0.4.1
 
 This version temporarily downgrades to Swift 5.9 since Xcode 16.1 made things stop working.

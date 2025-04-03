@@ -11,16 +11,15 @@ import Foundation
 /// This configuration defines how ``Slugifiable`` types are
 /// slugified.
 ///
-/// Use the ``SlugConfiguration/standard`` configuration for
-/// the default behavior, which limits the slugified strings
-/// to `a-z` and `1-9`, using `-` as separator.
+/// The standard configuration allows `a-z`, `A-Z` and `0-9`,
+/// and will e.g. slugify `Hello, world!` into `hello-world`.
 public struct SlugConfiguration {
 
     /// Create a new slug configurator.
     ///
     /// - Parameters:
     ///   - separator: The separator to use in the slugified string, by default `-`.
-    ///   - allowedCharacters: The characters to allow in the slugified string, by default alphanumerical characters and `-`.
+    ///   - allowedCharacters: The characters to allow in the slugified string, by default `a-zA-Z0-9`.
     public init(
         separator: String = "-",
         allowedCharacters: String = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
@@ -28,7 +27,9 @@ public struct SlugConfiguration {
         let chars = allowedCharacters + separator
         self.separator = separator
         self.allowedCharacters = chars
-        self.allowedCharacterSet = NSCharacterSet(charactersIn: chars)
+        let allowedSet = NSCharacterSet(charactersIn: chars)
+        self.allowedCharacterSet = allowedSet
+        self.notAllowedCharacterSet = allowedSet.inverted
     }
 
     /// The separator to use in the slugified string.
@@ -36,14 +37,17 @@ public struct SlugConfiguration {
 
     /// The characters to allow in the slugified string.
     public let allowedCharacters: String
-
-    /// The character set to allow in the slugified string.
+    
+    /// The characters to allow in the slugified string.
     public let allowedCharacterSet: NSCharacterSet
+    
+    /// The characters to not allow in the slugified string.
+    public let notAllowedCharacterSet: CharacterSet
 }
 
 public extension SlugConfiguration {
 
-    /// A standard slug configuration, that allows `a-z` and
-    /// `1-9` and uses `-` as the component separator.
+    /// A standard slug configuration, with `-` as component
+    /// separator and `a-zA-Z0-9` as allowed characters.
     static var standard: SlugConfiguration { .init() }
 }

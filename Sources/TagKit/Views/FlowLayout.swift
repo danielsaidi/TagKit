@@ -75,22 +75,52 @@ private extension FlowLayout {
 
     var content: some View {
         GeometryReader { geometry in
-            content(in: geometry)
+            content(in: geometry.size)
         }
     }
 
-    func content(in g: GeometryProxy) -> some View {
+    func content(in size: CGSize) -> some View {
         var width = CGFloat.zero
         var height = CGFloat.zero
         var lastHeight = CGFloat.zero
         let itemCount = items.count
+        let itemVews = items.enumerated().map { element in
+            let index = element.offset
+            let item = element.element
+            itemView(item)
+                .padding([.horizontal], horizontalSpacing)
+                .padding([.vertical], verticalSpacing)
+                .alignmentGuide(.leading, computeValue: { d in
+                    if abs(width - d.width) > size.width {
+                        width = 0
+                        height -= lastHeight
+                    }
+                    lastHeight = d.height
+                    let result = width
+                    if index == itemCount - 1 {
+                        width = 0
+                    } else {
+                        width -= d.width
+                    }
+                    return result
+                })
+                .alignmentGuide(.top, computeValue: { _ in
+                    let result = height
+                    if index == itemCount - 1 {
+                        height = 0
+                    }
+                    return result
+                })
+        }
+        
+        
         return ZStack(alignment: .topLeading) {
             ForEach(Array(items.enumerated()), id: \.offset) { index, item in
                 itemView(item)
                     .padding([.horizontal], horizontalSpacing)
                     .padding([.vertical], verticalSpacing)
                     .alignmentGuide(.leading, computeValue: { d in
-                        if abs(width - d.width) > g.size.width {
+                        if abs(width - d.width) > size.width {
                             width = 0
                             height -= lastHeight
                         }
