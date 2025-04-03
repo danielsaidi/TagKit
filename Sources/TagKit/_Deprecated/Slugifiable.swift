@@ -8,16 +8,14 @@
 
 import Foundation
 
-/// This protocol can be implemented by any type that can be
-/// converted to a slugified string.
-///
-/// This protocol is automatically implemented by `String`.
+@available(*, deprecated, renamed: "Sluggable")
 public protocol Slugifiable {
 
     /// The value used to create a slugified representation.
     var slugifiableValue: String { get }
 }
 
+@available(*, deprecated, renamed: "Sluggable")
 public extension Slugifiable {
 
     /// Convert the slugifiable value to a slugified string.
@@ -37,7 +35,12 @@ public extension Slugifiable {
     }
 }
 
-extension String: Slugifiable {
+public extension String {
 
-    public var slugifiableValue: String { self }
+    @available(*, deprecated, renamed: "slugified(with:)")
+    func slugified(
+        configuration: SlugConfiguration
+    ) -> String {
+        slugified(with: configuration)
+    }
 }

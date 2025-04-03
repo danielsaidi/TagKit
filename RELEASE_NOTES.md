@@ -8,9 +8,13 @@ TagKit will use semver after 1.0.
 
 This version makes TagKit use Swift 6.
 
+### 🗑️ Deprecated
+
+* `Slugifiable` has been deprecated. Just use the `slugified` string extension instead.
+
 ### 💥 Breaking Changes
 
-* `FlowLayout` did not support Swift 6 strict concurrency and has been removed.
+* `FlowLayout` could not be refactored to support strict concurrency, and has been removed.
 
 
 

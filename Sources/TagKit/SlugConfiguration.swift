@@ -11,18 +11,18 @@ import Foundation
 /// This configuration defines how ``Slugifiable`` types are
 /// slugified.
 ///
-/// The standard configuration allows `a-z`, `A-Z` and `0-9`,
-/// and will e.g. slugify `Hello, world!` into `hello-world`.
+/// The standard configuration allows `a-z0-9`, and will for
+/// instance slugify `Hello, world!` into `hello-world`.
 public struct SlugConfiguration {
 
     /// Create a new slug configurator.
     ///
     /// - Parameters:
     ///   - separator: The separator to use in the slugified string, by default `-`.
-    ///   - allowedCharacters: The characters to allow in the slugified string, by default `a-zA-Z0-9`.
+    ///   - allowedCharacters: The characters to allow in the slugified string, by default `a-z0-9`.
     public init(
         separator: String = "-",
-        allowedCharacters: String = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        allowedCharacters: String = "abcdefghijklmnopqrstuvwxyz0123456789"
     ) {
         let chars = allowedCharacters + separator
         self.separator = separator
