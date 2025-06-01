@@ -1,6 +1,6 @@
 # ``TagKit``
 
-TagKit is a Swift SDK that makes it easy to work with tags and slugification in `Swift` and `SwiftUI`.
+TagKit makes it easy to use tags and slugify strings in Swift and SwiftUI.
 
 
 
@@ -8,9 +8,7 @@ TagKit is a Swift SDK that makes it easy to work with tags and slugification in 
 
 ![TagKit logo](Logo.png)
 
-TagKit is a Swift SDK that makes it easy to work with tags and slugified strings in `Swift` and `SwiftUI`.
-
-You can slug and tag any type, customize the slug format, and use the built-in views to list and edit tags with ease.
+TagKit makes it easy to use tags and slugify strings in Swift and SwiftUI. You can slug and tag any type, customize the slug format, and use the built-in views to list and edit tags with ease.
 
 
 
@@ -21,6 +19,11 @@ TagKit can be installed with the Swift Package Manager:
 ```
 https://github.com/danielsaidi/TagKit.git
 ```
+
+
+## Support My Work
+
+You can [become a sponsor][Sponsors] to help me dedicate more time on my various [open-source tools][OpenSource]. Every contribution, no matter the size, makes a real difference in keeping these tools free and actively developed.
 
 
 
@@ -98,3 +101,11 @@ TagKit is available under the MIT license.
 - ``TagList``
 - ``TagEditList``
 - ``TagTextField``
+
+
+
+[Email]: mailto:daniel.saidi@gmail.com
+[Website]: https://danielsaidi.com
+[GitHub]: https://github.com/danielsaidi
+[OpenSource]: https://danielsaidi.com/opensource
+[Sponsors]: https://github.com/sponsors/danielsaidi
