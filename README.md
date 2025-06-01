@@ -15,7 +15,7 @@
 
 # TagKit
 
-TagKit makes it easy to use tags and slugify strings in Swift and SwiftUI.
+TagKit is a library that makes it easy to use tags and slugify strings in Swift and SwiftUI.
 
 <p align="center">
     <img src="Resources/Demo-v2.gif" width=450 />
