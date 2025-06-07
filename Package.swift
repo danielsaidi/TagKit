@@ -1,14 +1,14 @@
-// swift-tools-version:5.9
+// swift-tools-version:6.0
 
 import PackageDescription
 
 let package = Package(
     name: "TagKit",
     platforms: [
-        .iOS(.v15),
-        .macOS(.v12),
-        .tvOS(.v15),
-        .watchOS(.v10),
+        .iOS(.v16),
+        .macOS(.v13),
+        .tvOS(.v16),
+        .watchOS(.v9),
         .visionOS(.v1)
     ],
     products: [
@@ -19,10 +19,7 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "TagKit",
-            swiftSettings: [
-                .enableExperimentalFeature("StrictConcurrency")
-            ]
+            name: "TagKit"
         ),
         .testTarget(
             name: "TagKitTests",
