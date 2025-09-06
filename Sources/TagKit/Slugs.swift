@@ -29,7 +29,7 @@ public extension String {
 ///
 /// The standard configuration allows `a-z0-9`, and will for
 /// instance slugify `Hello, world!` into `hello-world`.
-public struct SlugConfiguration {
+public struct SlugConfiguration : @unchecked Sendable{
 
     /// Create a new slug configurator.
     ///

@@ -10,6 +10,7 @@
 
 import SwiftUI
 
+
 /// This enum specifies supported tag list container types.
 public enum TagListContainer {
 
@@ -38,10 +39,11 @@ public struct TagList<TagView: View>: View {
     public init(
         tags: [String],
         @ViewBuilder tagView: @escaping TagViewBuilder
+        
     ) {
         self.tags = tags
         self.tagView = tagView
-    }
+     }
 
     private let tags: [String]
 
@@ -50,6 +52,7 @@ public struct TagList<TagView: View>: View {
 
     /// This type defines the tag view builder for the list.
     public typealias TagViewBuilder = (_ tag: String) -> TagView
+
 
     public var body: some View {
         ForEach(Array(tags.enumerated()), id: \.offset) {

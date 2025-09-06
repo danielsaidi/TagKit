@@ -10,7 +10,7 @@
 import SwiftUI
 
 @available(*, deprecated, message: "Just use a regular Text element and style it as you wish.")
-public struct TagCapsule: View {
+public struct TagCapsule: View , Sendable{
 
     /// Create a tag capsule.
     ///
@@ -66,7 +66,7 @@ private extension View {
 }
 
 @available(*, deprecated, message: "Just use a regular Text element and style it as you wish.")
-private extension TagCapsuleStyle {
+private extension TagCapsuleStyle  {
     
     static var spiderman: Self {
         .init(

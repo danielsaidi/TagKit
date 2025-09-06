@@ -10,7 +10,7 @@
 import SwiftUI
 
 @available(*, deprecated, message: "Just use a regular Text element and style it as you wish.")
-public struct TagCapsuleStyle {
+public struct TagCapsuleStyle :Sendable{
     
     /// Create a new tag capsule style.
     ///
@@ -89,7 +89,7 @@ public struct TagCapsuleStyle {
 @available(*, deprecated, message: "Just use a regular Text element and style it as you wish.")
 public extension TagCapsuleStyle {
     
-    struct Border {
+    struct Border : Sendable {
         
         /// Create a new tag capsule border style.
         ///
@@ -111,7 +111,7 @@ public extension TagCapsuleStyle {
         public var width: Double
     }
     
-    struct Shadow {
+    struct Shadow : Sendable{
         
         /// Create a new tag capsule shadow style.
         ///
