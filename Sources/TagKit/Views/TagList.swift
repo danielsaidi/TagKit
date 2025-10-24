@@ -18,13 +18,12 @@ public enum TagListContainer {
 
 /// This view can be used to list a collection of tags.
 ///
-/// The view takes a list of tags and renders them using the
-/// provided `tagView`  builder. It will not slugify the tag
-/// elements, so either provide already slugified strings or
+/// The view takes a list of tags and renders them using the provided `tagView`
+/// builder. It will not slugify the tag elements, so either provide slugified strings or
 /// slugify them in the view builder.
 ///
-/// Note that this list only renders the tag views. You must
-/// specify the container in which they will be rendered.
+/// Note that this list only renders the tag views. You must specify the container in
+/// which they will be rendered.
 public struct TagList<TagView: View>: View {
 
     /// Create a tag list.

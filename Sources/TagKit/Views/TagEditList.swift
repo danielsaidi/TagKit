@@ -8,15 +8,13 @@
 
 import SwiftUI
 
-/// This view lists a collection of tags, that can be tapped
-/// to toggle them in the provided tags binding.
+/// This view lists a collection of tags that can be tapped to toggle them on and off.
 ///
-/// This view will list all tags in the provided binding, as
-/// well as a list of additional tags which should be listed
-/// even when they are not set in the binding.
+/// This view will list all tags in the provided binding, as well as a list of additional
+/// tags which should be listed even when they are not set in the binding.
 ///
-/// Note that this list only renders the tag views. You must
-/// specify the container in which they will be rendered.
+/// Note that this list only renders the tag views. You must specify the container in
+/// which they will be rendered.
 public struct TagEditList<TagView: View>: View {
 
     /// Create a tag edit list.

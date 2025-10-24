@@ -8,15 +8,13 @@
 
 import Foundation
 
-/// This protocol describe types that can be tagged with one
-/// or many tags, which can be used to group, search etc.
+/// This protocol can be implemented by any type that can be tagged.
 ///
-/// Types that implement this protocol get access to a bunch
-/// of additional features, e.g. ``hasTags``, ``addTag(_:)``,
-/// ``toggleTag(_:)``, etc.
+/// Types that implement this protocol get access to a bunch of additional features,
+/// e.g. ``hasTags``, ``addTag(_:)``, ``toggleTag(_:)``, etc.
 ///
-/// Note that the ``tags`` property is a raw string list. If
-/// ypu want a list of slugified tags, use ``slugifiedTags``.
+/// Note that the ``tags`` property is a raw string list. If you want a slugified tag
+/// collection, use ``slugifiedTags``.
 public protocol Taggable {
 
     /// All tags that have been applied to the item.

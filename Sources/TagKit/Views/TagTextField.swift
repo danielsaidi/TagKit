@@ -8,13 +8,7 @@
 
 import SwiftUI
 
-/**
- This text field will automatically slugify any text that is
- entered into it.
-
- This text field will also make it harder to type characters
- that are not in the configuration's allowed character set.
- */
+/// This text field will automatically slugify any text that is typed into it.
 public struct TagTextField: View {
 
     /// Create a new tag text field.

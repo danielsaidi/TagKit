@@ -24,11 +24,10 @@ public extension String {
     }
 }
 
-/// This configuration defines how ``Slugifiable`` types are
-/// slugified.
+/// This configuration defines how ``Slugifiable`` types are slugified.
 ///
-/// The standard configuration allows `a-z0-9`, and will for
-/// instance slugify `Hello, world!` into `hello-world`.
+/// The standard configuration allows `a-z0-9`, and will for instance slugify the
+/// `Hello, world!` string into `hello-world`.
 public struct SlugConfiguration {
 
     /// Create a new slug configurator.
@@ -63,7 +62,7 @@ public struct SlugConfiguration {
 
 public extension SlugConfiguration {
 
-    /// A standard slug configuration, with `-` as component
-    /// separator and `a-zA-Z0-9` as allowed characters.
+    /// A standard slug configuration that uses `-` as component separator and
+    /// `a-zA-Z0-9` as the allowed characters.
     static var standard: SlugConfiguration { .init() }
 }
