@@ -4,7 +4,7 @@
 
 <p align="center">
     <img src="https://img.shields.io/github/v/release/danielsaidi/TagKit?color=%2300550&sort=semver" alt="Version" />
-    <img src="https://img.shields.io/badge/Swift-5.9-orange.svg" alt="Swift 5.9" />
+    <img src="https://img.shields.io/badge/Swift-6.1-orange.svg" alt="Swift 6.1" />
     <img src="https://img.shields.io/badge/platform-SwiftUI-blue.svg" alt="Swift UI" title="Swift UI" />
     <a href="https://danielsaidi.github.io/TagKit"><img src="https://img.shields.io/badge/documentation-web-blue.svg" alt="Documentation" /></a>
     <a href="https://github.com/danielsaidi/TagKit/blob/master/LICENSE"><img src="https://img.shields.io/github/license/danielsaidi/TagKit" alt="MIT License" /></a>

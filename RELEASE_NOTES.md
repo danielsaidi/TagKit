@@ -1,6 +1,14 @@
 # Release notes
 
-TagKit will use semver after 1.0.
+[TagKit](https://github.com/danielsaidi/TagKit) will use semver after 1.0.
+
+Until then, breaking changes can happen in any minor version.
+
+
+
+## 0.6
+
+This version bumps the package to Swift 6.1.
 
 
 
