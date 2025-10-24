@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="Resources/Icon.png" alt="Project Icon" width="250" />
+    <img src="Resources/Icon-Badge.png" alt="Project Icon" width="250" />
 </p>
 
 <p align="center">
@@ -18,7 +18,7 @@
 TagKit is a library that makes it easy to use tags and slugify strings in Swift and SwiftUI.
 
 <p align="center">
-    <img src="Resources/Demo-v2.gif" width=450 />
+    <img src="Resources/Demo.gif" width=450 />
 </p>
 
 You can slug and tag any type, customize the slug format, and use the built-in views to list and edit tags with ease.
