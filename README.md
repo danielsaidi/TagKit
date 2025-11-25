@@ -5,10 +5,8 @@
 <p align="center">
     <img src="https://img.shields.io/github/v/release/danielsaidi/TagKit?color=%2300550&sort=semver" alt="Version" />
     <img src="https://img.shields.io/badge/Swift-6.1-orange.svg" alt="Swift 6.1" />
-    <img src="https://img.shields.io/badge/platform-SwiftUI-blue.svg" alt="Swift UI" title="Swift UI" />
     <a href="https://danielsaidi.github.io/TagKit"><img src="https://img.shields.io/badge/documentation-web-blue.svg" alt="Documentation" /></a>
     <a href="https://github.com/danielsaidi/TagKit/blob/master/LICENSE"><img src="https://img.shields.io/github/license/danielsaidi/TagKit" alt="MIT License" /></a>
-    <a href="https://github.com/sponsors/danielsaidi"><img src="https://img.shields.io/badge/sponsor-GitHub-red.svg" alt="Sponsor my work" /></a>
 </p>
 
 
@@ -33,11 +31,6 @@ TagKit can be installed with the Swift Package Manager:
 ```
 https://github.com/danielsaidi/TagKit.git
 ```
-
-
-## Support My Work
-
-You can [become a sponsor][Sponsors] to help me dedicate more time on my various [open-source tools][OpenSource]. Every contribution, no matter the size, makes a real difference in keeping these tools free and actively developed.
 
 
 
@@ -90,6 +83,12 @@ TagKit has a couple of tag related views, like ``TagList``, ``TagEditList`` and 
 ## Documentation
 
 The online [documentation][Documentation] has more information, articles, code examples, etc.
+
+
+
+## Support My Work
+
+You can [become a sponsor][Sponsors] to help me dedicate more time on my various [open-source tools][OpenSource]. Every contribution, no matter the size, makes a real difference in keeping these tools free and actively developed.
 
 
 
