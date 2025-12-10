@@ -30,9 +30,6 @@ public struct TagList<TagView: View>: View {
     ///
     /// - Parameters:
     ///   - tags: The items to render in the layout.
-    ///   - container: The container type, by default `.scrollView`.
-    ///   - horizontalSpacing: The horizontal spacing between items.
-    ///   - verticalSpacing: The vertical spacing between items.
     ///   - tagView: The item view builder.
     public init(
         tags: [String],

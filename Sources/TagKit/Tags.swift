@@ -54,7 +54,7 @@ public extension Taggable {
     /// Get a list of slugified ``tags``.
     ///
     /// - Parameters:
-    ///   - config: The slug configuration to use, by default ``SlugConfiguration/standard``.
+    ///   - configuration: The slug configuration to use, by default ``SlugConfiguration/standard``.
     func slugifiedTags(
         configuration: SlugConfiguration = .standard
     ) -> [String] {

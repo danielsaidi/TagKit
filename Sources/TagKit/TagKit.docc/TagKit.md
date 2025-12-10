@@ -66,10 +66,7 @@ public protocol Taggable {
 
 Once a type implements ``Taggable``, it can make use of a lot of automatically implemented functionality that the protocol provides, like ``Taggable/hasTags``, ``Taggable/slugifiedTags``, ``Taggable/addTag(_:)``, ``Taggable/removeTag(_:)``, ``Taggable/toggleTag(_:)``. All ``Taggable`` collections are extended as well.
 
-
-### Views
-
-TagKit has a couple of tag related views, like ``TagList``, ``TagEditList`` and ``TagTextField``.
+TagKit has a couple of tag-related views, like ``TagList``, ``TagEditList`` and ``TagTextField``.
 
 
 
@@ -90,14 +87,12 @@ TagKit is available under the MIT license.
 
 ### Slugs
 
+- ``Slugifiable``
 - ``SlugConfiguration``
 
 ### Tags
 
 - ``Taggable``
-
-### Views
-
 - ``TagList``
 - ``TagEditList``
 - ``TagTextField``
