@@ -13,13 +13,13 @@
 
 # TagKit
 
-TagKit is a library that makes it easy to use tags and slugify strings in Swift and SwiftUI.
+TagKit makes it easy to use tags and slugified strings in Swift and SwiftUI.
 
 <p align="center">
     <img src="https://github.com/danielsaidi/TagKit/releases/download/0.5.0/Demo.gif" width=450 />
 </p>
 
-You can slug and tag any type, customize the slug format, and use the built-in views to list and edit tags with ease.
+You can make any type implement ``Taggable`` and ``Slugifiable`` to manage tags and slugs. You can use ``TagList`` to list tags and ``TagToggleList`` to list tags that can be toggled on and off.
 
 
 
@@ -36,14 +36,36 @@ https://github.com/danielsaidi/TagKit.git
 
 ## Getting started
 
-TagKit lets you slugify strings and manage tags for any taggable type.
+The two main areas of TagKit is to make it easy to manage tags and to slugify strings.
+
+
+### Tags
+
+Tagging items make it possible to categorize, group, filter and search among items, based on their tags. TagKit has a ``Tagged`` protocol for types with immutable ``tags`` and a ``Taggable`` protocol for types with mutable tags.
+
+```
+struct MyModel: Tagged {
+
+    var tags: [String] {
+        return ["Tag 1", "Tag 2", "Tag 3"]
+    }
+}
+
+let value = MyModel()
+value.tags()             // ["Tag 1", "Tag 2", "Tag 3"] 
+value.slugifiedTags()    // ["tag-1", "tag-2", "tag-3"]
+value.hasTag("Tag 1")    // true
+value.hasTag("Tag 4")    // false
+```
+
+All ``Tagged`` types are extended with properties and functions like ``hasTags``, ``hasTag(_:)``, ``slugifiedTags``, etc. ``Taggable`` types are extended with mutable functions like ``addTag(_:)``, ``removeTag(_:)``, ``toggleTag(_:)``, etc.
+
+TagKit has tag-related views like ``TagList``, ``TagToggleList`` and ``TagTextField``. You can apply a ``tagFlow(_:)`` modifier to control the flow of tags in a list, and ``tagCapsule(style:)`` to convert a view into a tag capsule. 
 
 
 ### Slugs
 
-Slugifying a string means to remove unwanted characters and replacing whitespaces with a separator. This is often used in urls, where a page slug creates a unique, valid url that also describes the content.
-
-TagKit has a ``Swift/String/slugified(with:)`` string extension that lets you slugify strings with a standard or custom ``SlugConfiguration``:
+Slugifying means to remove unwanted characters and replacing whitespaces to get a unique identifier that can be used in e.g. URLs. TagKit has a ``Slugifiable`` protocol that makes it easy to slugify type values.
 
 ```
 let custom = SlugConfiguration(
@@ -55,28 +77,7 @@ let custom = SlugConfiguration(
 "Hello, world!".slugified(with: custom) // "he+wo"
 ```
 
-Slugified strings are automatically lowercased, since a slug should be case-insensitively unique.
-
-
-### Tags
-
-Tagging is the process of adding tags to an item, with the intent to categorize, group, filter and search among tags.
-
-TagKit has a ``Taggable`` protocol that can be implemented by any type that has mutable ``Taggable/tags``:
-
-```swift
-public protocol Taggable {
-
-    var tags: [String] { get set }
-}
-```
-
-Once a type implements ``Taggable``, it can make use of a lot of automatically implemented functionality that the protocol provides, like ``Taggable/hasTags``, ``Taggable/slugifiedTags``, ``Taggable/addTag(_:)``, ``Taggable/removeTag(_:)``, ``Taggable/toggleTag(_:)``. All ``Taggable`` collections are extended as well.
-
-
-### Views
-
-TagKit has a couple of tag related views, like ``TagList``, ``TagEditList`` and ``TagTextField``.
+A ``Slugifiable`` type must provide a ``slugValue`` after which you can use ``slugified(with:)`` to create a slugified representation of the type. You can use a custom ``SlugConfiguration`` or the ``standard`` one.
 
 
 
