@@ -6,7 +6,7 @@ Until then, breaking changes can happen in any minor version.
 
 
 
-## 0.7.0
+## 0.7
 
 This version re-introduces the `Slugifiable` protocol and adds new flow capabilities.
 
@@ -16,6 +16,8 @@ This version adds an internal version of [SwiftUI-Flow](https://github.com/tevel
 
 * `Slugifiable` has been re-added to the library.
 * `SwiftUI-Flow` has been re-added to the library.
+* `TagFlow` is a new enum that defines supported flows.
+* `View` has a new `.tagFlow(_:)` modifier to set a flow.
 
 
 

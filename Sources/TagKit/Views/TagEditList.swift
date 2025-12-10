@@ -8,13 +8,19 @@
 
 import SwiftUI
 
-/// This view lists a collection of tags that can be tapped to toggle them on and off.
+/// This view can be used to list a collection of tags, with
+/// a custom `tagView` builder.
 ///
-/// This view will list all tags in the provided binding, as well as a list of additional
-/// tags which should be listed even when they are not set in the binding.
+/// The view allows you to tap tags to toggle them on or off.
+/// It will list all tags in the provided binding as well as
+/// a list of `additionalTags` that should be listed even if
+/// they are not in the `tags` collection.
 ///
-/// Note that this list only renders the tag views. You must specify the container in
-/// which they will be rendered.
+/// You can apply a ``SwiftUICore/View/tagFlow(_:)`` to this
+/// view, to make tags flow horizontally or vertically.
+///
+/// > Note: The view doesn't slugify the strings you provide,
+/// so make to do so beforehand.
 public struct TagEditList<TagView: View>: View {
 
     /// Create a tag edit list.
@@ -94,11 +100,8 @@ private extension TagEditList {
 
     struct Preview: View {
 
-        @State var newTag = ""
         @State var tags = ["tag-1"]
         
-        let slugConfiguration = SlugConfiguration.standard
-
         var body: some View {
             NavigationView {
                 ScrollView {
@@ -115,37 +118,8 @@ private extension TagEditList {
                     }
                     .padding()
                 }
-                .toolbar {
-                    ToolbarItem {
-                        HStack {
-                            TagTextField(
-                                text: $newTag,
-                                placeholder: "Add new tag",
-                                configuration: slugConfiguration
-                            )
-                            #if os(iOS)
-                            .autocorrectionDisabled()
-                            .textFieldStyle(.roundedBorder)
-                            #endif
-                            Button("Add") {
-                                addNewTag(tag: newTag)
-                            }
-                            .disabled(newTag.isEmpty)
-                        }
-                    }
-                }
             }
-        }
-
-        private func addNewTag(
-            tag: String,
-            selected: Bool = true
-        ) {
-            let slug = tag.slugified(with: slugConfiguration)
-            if selected {
-                tags.append(slug)
-            }
-            newTag = ""
+            .tagFlow(.horizontal)
         }
     }
 

@@ -10,20 +10,14 @@
 
 import SwiftUI
 
-/// This enum specifies supported tag list container types.
-public enum TagListContainer {
-
-    case scrollView, vstack
-}
-
-/// This view can be used to list a collection of tags.
+/// This view can be used to list a collection of tags, with
+/// a custom `tagView` builder.
 ///
-/// The view takes a list of tags and renders them using the provided `tagView`
-/// builder. It will not slugify the tag elements, so either provide slugified strings or
-/// slugify them in the view builder.
+/// You can apply a ``SwiftUICore/View/tagFlow(_:)`` to this
+/// view, to make tags flow horizontally or vertically.
 ///
-/// Note that this list only renders the tag views. You must specify the container in
-/// which they will be rendered.
+/// > Note: The view doesn't slugify the strings you provide,
+/// so make to do so beforehand.
 public struct TagList<TagView: View>: View {
 
     /// Create a tag list.
@@ -41,45 +35,99 @@ public struct TagList<TagView: View>: View {
 
     private let tags: [String]
 
-    @ViewBuilder
-    private let tagView: TagViewBuilder
+    @ViewBuilder private let tagView: TagViewBuilder
+
+    @Environment(\.tagFlow) var flow
 
     /// This type defines the tag view builder for the list.
     public typealias TagViewBuilder = (_ tag: String) -> TagView
 
     public var body: some View {
-        VFlow {
-            ForEach(Array(tags.enumerated()), id: \.offset) {
-                tagView($0.element)
-            }
+        switch flow {
+        case .automatic, .plain:
+            bodyContent()
+        case .horizontal(let config):
+            HFlow(
+                horizontalAlignment: config.horizontalAlignment,
+                verticalAlignment: config.verticalAlignment,
+                horizontalSpacing: config.horizontalSpacing,
+                verticalSpacing: config.verticalSpacing,
+                justified: config.justified,
+                distributeItemsEvenly: config.distributeItemsEvenly,
+                content: bodyContent
+            )
+        case .vertical(let config):
+            VFlow(
+                horizontalAlignment: config.horizontalAlignment,
+                verticalAlignment: config.verticalAlignment,
+                horizontalSpacing: config.horizontalSpacing,
+                verticalSpacing: config.verticalSpacing,
+                justified: config.justified,
+                distributeItemsEvenly: config.distributeItemsEvenly,
+                content: bodyContent
+            )
         }
     }
 }
 
 private extension TagList {
 
-    var bodyContent: some View {
+    func bodyContent() -> some View {
         ForEach(Array(tags.enumerated()), id: \.offset) {
             tagView($0.element)
         }
     }
 }
 
-#Preview {
+@MainActor
+private var previewContent: some View {
+    TagList(tags: [
+        "A long tag here",
+        "Another long tag here",
+        "A", "bunch", "of", "short", "tags",
+        "Another long tag here",
+        "A", "bunch", "of", "short", "tags",
+        "Another long tag here",
+        "A", "bunch", "of", "short", "tags",
+        "Another long tag here",
+        "A", "bunch", "of", "short", "tags",
+        "Another long tag here",
+        "A", "bunch", "of", "short", "tags",
+        "Another long tag here",
+        "A", "bunch", "of", "short", "tags",
+        "Another long tag here",
+        "A", "bunch", "of", "short", "tags"
+    ]) { tag in
+        Text(tag.slugified())
+            .font(.system(size: 12))
+            .foregroundColor(.black)
+            .padding(.horizontal, 8)
+            .padding(.vertical, 4)
+            .background(Color.green, in: .rect(cornerRadius: 5))
+    }
+    .padding()
+}
+
+#Preview("Horizontal") {
+
+    ScrollView(.vertical) {
+        previewContent
+    }
+    .tagFlow(.horizontal)
+}
+
+#Preview("Vertical") {
+
+    ScrollView(.horizontal) {
+        previewContent
+    }
+    .tagFlow(.vertical)
+}
+
+#Preview("Automatic") {
 
     ScrollView {
-        TagList(tags: [
-            "A long tag here",
-            "Another long tag here",
-            "A", "bunch", "of", "short", "tags"
-        ]) { tag in
-            Text(tag.slugified())
-                .font(.system(size: 12))
-                .foregroundColor(.black)
-                .padding(.horizontal, 8)
-                .padding(.vertical, 4)
-                .background(Color.green, in: .rect(cornerRadius: 5))
-        }
-        .padding()
+        previewContent
     }
+    .tagFlow(.automatic)
 }
