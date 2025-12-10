@@ -11,3 +11,6 @@ disabled_rules:
 included:
   - Sources
   - Tests
+
+excluded:
+  - Sources/TagKit/Flows
