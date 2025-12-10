@@ -1,6 +1,6 @@
 # ``TagKit``
 
-TagKit makes it easy to use tags and slugify strings in Swift and SwiftUI.
+TagKit makes it easy to use tags and slugified strings in Swift and SwiftUI.
 
 
 
@@ -8,7 +8,7 @@ TagKit makes it easy to use tags and slugify strings in Swift and SwiftUI.
 
 ![TagKit logo](Logo.png)
 
-TagKit makes it easy to use tags and slugify strings in Swift and SwiftUI. You can slug and tag any type, customize the slug format, and use the built-in views to list and edit tags with ease.
+TagKit makes it easy to tag and slugify any type in Swift and SwiftUI. You can make any type implement ``Taggable`` & ``Slugifiable``, and use ``TagList`` to list tags and ``TagToggleList`` to list tags that can be toggled on and off.
 
 
 
@@ -21,53 +21,26 @@ https://github.com/danielsaidi/TagKit.git
 ```
 
 
-## Support My Work
-
-You can [become a sponsor][Sponsors] to help me dedicate more time on my various [open-source tools][OpenSource]. Every contribution, no matter the size, makes a real difference in keeping these tools free and actively developed.
-
-
 
 ## Getting started
 
-TagKit lets you slugify strings and manage tags for any taggable type.
-
-
-### Slugs
-
-Slugifying a string means to remove unwanted characters and replacing whitespaces with a separator. This is often used in urls, where a page slug creates a unique, valid url that also describes the content.
-
-TagKit has a ``Swift/String/slugified(with:)`` string extension that lets you slugify strings with a standard or custom ``SlugConfiguration``:
-
-```
-let custom = SlugConfiguration(
-    separator: "+",
-    allowedCharacters: .init(charactersIn: "hewo")
-)
-
-"Hello, world!".slugified()             // "hello-world" 
-"Hello, world!".slugified(with: custom) // "he+wo"
-```
-
-Slugified strings are automatically lowercased, since a slug should be case-insensitively unique.
+The two main areas of TagKit is to make it easy to manage tags and to slugify strings.
 
 
 ### Tags
 
-Tagging is the process of adding tags to an item, with the intent to categorize, group, filter and search among tags.
+Tagging items make it possible to categorize, group, filter and search among items, based on their tags. TagKit has a ``Tagged`` protocol for types with immutable ``Tagged/tags`` and a ``Taggable`` protocol for types with mutable tags.
 
-TagKit has a ``Taggable`` protocol that can be implemented by any type that has mutable ``Taggable/tags``:
+All ``Tagged`` types are extended with properties and functions like ``Tagged/hasTags``, ``Tagged/hasTag(_:)``, ``Tagged/slugifiedTags``, etc. while ``Taggable`` types are extended with mutable functions like ``Taggable/addTag(_:)``, ``Taggable/removeTag(_:)``, ``Taggable/toggleTag(_:)``, etc.
 
-```swift
-public protocol Taggable {
+TagKit has a bunch of tag-related views, like ``TagList``, ``TagEditList`` & ``TagTextField``. You can apply a ``SwiftUICore/View/tagFlow(_:)`` modifier to control the flow of tags in a list, and ``SwiftUICore/View/tagCapsule(style:)`` to convert a view into a tag capsule. 
 
-    var tags: [String] { get set }
-}
-```
 
-Once a type implements ``Taggable``, it can make use of a lot of automatically implemented functionality that the protocol provides, like ``Taggable/hasTags``, ``Taggable/slugifiedTags``, ``Taggable/addTag(_:)``, ``Taggable/removeTag(_:)``, ``Taggable/toggleTag(_:)``. All ``Taggable`` collections are extended as well.
+### Slugs
 
-TagKit has a couple of tag-related views, like ``TagList``, ``TagEditList`` and ``TagTextField``.
+Slugifying means to remove unwanted characters and replacing whitespaces with a separator to get a unique identifier that can be used in e.g. URLs. TagKit has a ``Slugifiable`` protocol that can be implemented by any type that should support this feature.
 
+A ``Slugifiable`` type must provide a ``Slugifiable/slugValue`` after which you can use ``Slugifiable/slugified(with:)`` to create a slugified representation of the type. You can use a custom ``SlugConfiguration`` or the ``SlugConfiguration/standard`` one.
 
 
 
@@ -92,10 +65,16 @@ TagKit is available under the MIT license.
 
 ### Tags
 
+- ``Tagged``
 - ``Taggable``
+
+### Tags UI
+
+- ``TagCapsuleStyle``
+- ``TagFlow``
 - ``TagList``
-- ``TagEditList``
 - ``TagTextField``
+- ``TagToggleList``
 
 
 

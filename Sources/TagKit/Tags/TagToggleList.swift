@@ -1,5 +1,5 @@
 //
-//  TagEditList.swift
+//  TagToggleList.swift
 //  TagKit
 //
 //  Created by Daniel Saidi on 2022-08-19.
@@ -21,7 +21,7 @@ import SwiftUI
 ///
 /// > Note: The view doesn't slugify the strings you provide,
 /// so make to do so beforehand.
-public struct TagEditList<TagView: View>: View {
+public struct TagToggleList<TagView: View>: View {
 
     /// Create a tag edit list.
     ///
@@ -67,7 +67,7 @@ private extension View {
     }
 }
 
-private extension TagEditList {
+private extension TagToggleList {
 
     var allTags: [String] {
         Array(Set(tags.wrappedValue + additionalTags)).sorted()
@@ -100,22 +100,23 @@ private extension TagEditList {
 
     struct Preview: View {
 
-        @State var tags = ["tag-1"]
+        @State var tags = ["tag-1", "tag-2", "tag-3"]
         
         var body: some View {
             NavigationView {
                 ScrollView {
-                    TagEditList(
+                    TagToggleList(
                         tags: $tags,
                         additionalTags: ["always-visible"]
                     ) { tag, isAdded in
                         Text(tag.slugified())
-                            .font(.system(size: 12))
-                            .foregroundColor(.black)
-                            .padding(.horizontal, 8)
-                            .padding(.vertical, 4)
-                            .background(isAdded ? Color.green : Color.primary.opacity(0.1), in: .capsule)
+                            .font(.title2)
+                            .tagCapsule(
+                                background: isAdded ? .green : .gray,
+                                foreground: .black
+                            )
                     }
+                    .frame(maxWidth: .infinity)
                     .padding()
                 }
             }

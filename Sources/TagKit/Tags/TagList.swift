@@ -99,11 +99,7 @@ private var previewContent: some View {
         "A", "bunch", "of", "short", "tags"
     ]) { tag in
         Text(tag.slugified())
-            .font(.system(size: 12))
-            .foregroundColor(.black)
-            .padding(.horizontal, 8)
-            .padding(.vertical, 4)
-            .background(Color.green, in: .rect(cornerRadius: 5))
+            .tagCapsule(background: .green, foreground: .black)
     }
     .padding()
 }

@@ -17,6 +17,8 @@ This version adds an internal version of [SwiftUI-Flow](https://github.com/tevel
 * `Slugifiable` has been re-added to the library.
 * `SwiftUI-Flow` has been re-added to the library.
 * `TagFlow` is a new enum that defines supported flows.
+* `Tagged` is a new protocol for immutable, tagged types.
+* `Taggable` inherits `Tagged` and adds mutable functions.
 * `View` has a new `.tagFlow(_:)` modifier to set a flow.
 
 
