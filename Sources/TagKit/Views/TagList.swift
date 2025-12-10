@@ -48,6 +48,17 @@ public struct TagList<TagView: View>: View {
     public typealias TagViewBuilder = (_ tag: String) -> TagView
 
     public var body: some View {
+        VFlow {
+            ForEach(Array(tags.enumerated()), id: \.offset) {
+                tagView($0.element)
+            }
+        }
+    }
+}
+
+private extension TagList {
+
+    var bodyContent: some View {
         ForEach(Array(tags.enumerated()), id: \.offset) {
             tagView($0.element)
         }

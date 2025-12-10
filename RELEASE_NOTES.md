@@ -6,9 +6,16 @@ Until then, breaking changes can happen in any minor version.
 
 
 
-## 0.6.1
+## 0.7.0
 
-This version re-introduces the `Slugifiable` protocol.
+This version re-introduces the `Slugifiable` protocol and adds new flow capabilities.
+
+This version adds an internal version of [SwiftUI-Flow](https://github.com/tevelee/SwiftUI-Flow) to allow us to use horizontal and vertical flows when rendering tags.
+
+### ✨ Features
+
+* `Slugifiable` has been re-added to the library.
+* `SwiftUI-Flow` has been re-added to the library.
 
 
 
@@ -24,7 +31,7 @@ This version makes TagKit use Swift 6, by removing the flow layout parts from th
 
 The `TagList` and `TagEditList` is therefore much simpler now before, and can be used in more ways. 
 
-### 💡 Behavior Changes
+### 💡 Changes
 
 * `TagList` and `TagEditList` now just lists the provided tags.
 * `TagList` and `TagEditList` can now be rendered in any layout container.
