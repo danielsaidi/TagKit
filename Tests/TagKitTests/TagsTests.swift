@@ -26,7 +26,7 @@ final class TaggableItemTests: XCTestCase {
     func test_slugifiedTags_canReturnSlugifiedTagsUsingCustomConfiguration() {
         let item = TestItem(tags: ["first tag", "Second tag"])
         let config = SlugConfiguration(separator: "+")
-        let result = item.slugifiedTags(configuration: config)
+        let result = item.slugifiedTags(withConfiguration: config)
 
         XCTAssertEqual(result, ["first+tag", "second+tag"])
     }
