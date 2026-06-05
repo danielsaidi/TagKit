@@ -10,7 +10,7 @@ import SwiftUI
 
 /// This style can be used to style a tag capsule.
 ///
-/// It can be applied with ``SwiftUICore/View/tagCapsule(style:)``.
+/// This style can be applied with ``SwiftUICore/View/tagCapsule(style:)``.
 public struct TagCapsuleStyle: Sendable {
 
     /// Create a custom tag capsule style.
